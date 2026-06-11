@@ -8,7 +8,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
-import { getDictionary, type Language, type Dictionary } from "./i18n";
+import { getDictionary, type Language, type Dictionary } from "./Bebi18n";
 
 interface LanguageContextValue {
   lang: Language;

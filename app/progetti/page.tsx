@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import PageTransition from "@/components/PageTransition";
-import AnimatedSection from "@/components/AnimatedSection";
-import { useLanguage } from "@/lib/LanguageContext";
+import PageTransition from "@/components/beb-ui/BebPageTransition";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 type ProjectCategory = "all" | "privati" | "imprese";
 

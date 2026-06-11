@@ -1,8 +1,8 @@
 "use client";
 
-import AnimatedSection from "@/components/AnimatedSection";
-import Button from "@/components/Button";
-import { useLanguage } from "@/lib/LanguageContext";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import Button from "@/components/beb-ui/BebButton";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 export default function ShowroomCTA() {
   const { t } = useLanguage();

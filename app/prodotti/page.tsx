@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import PageTransition from "@/components/PageTransition";
-import AnimatedSection from "@/components/AnimatedSection";
-import Button from "@/components/Button";
-import { useLanguage } from "@/lib/LanguageContext";
+import PageTransition from "@/components/beb-ui/BebPageTransition";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import Button from "@/components/beb-ui/BebButton";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 const categoryImages = [
   "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
@@ -62,9 +62,7 @@ export default function ProdottiPage() {
             {categories.map((cat, i) => (
               <AnimatedSection key={i} delay={0.1}>
                 <div
-                  className={`grid gap-8 lg:grid-cols-2 lg:gap-16 items-center ${
-                    i % 2 === 1 ? "lg:direction-rtl" : ""
-                  }`}
+                  className={`grid gap-8 lg:grid-cols-2 lg:gap-16 items-center`}
                 >
                   <div className={`${i % 2 === 1 ? "lg:order-2" : ""}`}>
                     <div className="relative aspect-[4/3] overflow-hidden">

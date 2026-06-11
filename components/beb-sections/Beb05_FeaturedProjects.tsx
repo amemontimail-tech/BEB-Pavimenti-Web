@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import AnimatedSection from "@/components/AnimatedSection";
-import { useLanguage } from "@/lib/LanguageContext";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 const projectImages = [
   {

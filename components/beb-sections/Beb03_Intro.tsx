@@ -1,7 +1,7 @@
 "use client";
 
-import AnimatedSection from "@/components/AnimatedSection";
-import { useLanguage } from "@/lib/LanguageContext";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 export default function Intro() {
   const { t } = useLanguage();

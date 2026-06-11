@@ -1,15 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import PageTransition from "@/components/PageTransition";
-import AnimatedSection from "@/components/AnimatedSection";
-import { useLanguage } from "@/lib/LanguageContext";
+import PageTransition from "@/components/beb-ui/BebPageTransition";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 const teamMembers = [
-  { name: "Giuseppe B.", role: "Fondatore / Founder" },
-  { name: "Marco B.", role: "Direzione / Director" },
-  { name: "Laura B.", role: "Design Consultant" },
-  { name: "Andrea R.", role: "Project Manager" },
+  {
+    name: "Giuseppe B.",
+    role: "Fondatore / Founder",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&fit=crop&crop=face",
+  },
+  {
+    name: "Marco B.",
+    role: "Direzione / Director",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&fit=crop&crop=face",
+  },
+  {
+    name: "Laura B.",
+    role: "Design Consultant",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80&fit=crop&crop=face",
+  },
+  {
+    name: "Andrea R.",
+    role: "Project Manager",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80&fit=crop&crop=face",
+  },
 ];
 
 export default function ChiSiamoPage() {
@@ -112,7 +128,7 @@ export default function ChiSiamoPage() {
                 <div className="group text-center">
                   <div className="relative mx-auto aspect-[3/4] w-full max-w-[280px] overflow-hidden bg-surface">
                     <Image
-                      src={`https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&fit=crop&crop=face`}
+                      src={member.image}
                       alt={member.name}
                       fill
                       className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"

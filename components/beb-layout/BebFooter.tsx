@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useLanguage } from "@/lib/LanguageContext";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 const navLinks = [
   { href: "/", key: "home" as const },
@@ -57,7 +57,7 @@ export default function Footer() {
               <li>Savigliano (CN), Italia</li>
               <li className="pt-2">
                 <a
-                  href="tel:+390172223888"
+                  href="tel:+390172222388"
                   className="hover:text-accent transition-colors duration-300"
                 >
                   +39 0172 22388

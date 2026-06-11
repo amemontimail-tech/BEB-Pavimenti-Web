@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import AnimatedSection from "@/components/AnimatedSection";
-import { useLanguage } from "@/lib/LanguageContext";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 const categoryImages = [
   "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",

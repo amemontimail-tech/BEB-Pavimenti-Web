@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Button from "@/components/Button";
-import { useLanguage } from "@/lib/LanguageContext";
+import Button from "@/components/beb-ui/BebButton";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 export default function Hero() {
   const { t } = useLanguage();

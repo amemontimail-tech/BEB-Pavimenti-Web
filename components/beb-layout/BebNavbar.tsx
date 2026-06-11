@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/lib/LanguageContext";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 const navLinks = [
   { href: "/", key: "home" as const },
@@ -50,10 +50,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-serif text-2xl tracking-tight text-foreground"
+            className="flex items-center"
             id="navbar-logo"
           >
-            B&B
+            <img
+              src="/logo BEB.webp"
+              alt="Logo BEB Pavimenti"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav Links */}

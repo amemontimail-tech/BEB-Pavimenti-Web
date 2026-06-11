@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
-import { LanguageProvider } from "@/lib/LanguageContext";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/lib/BebLanguageContext";
+import Navbar from "@/components/beb-layout/BebNavbar";
+import Footer from "@/components/beb-layout/BebFooter";
 import "./globals.css";
 
 const geistSans = Geist({

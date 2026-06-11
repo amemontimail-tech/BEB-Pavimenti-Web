@@ -1,13 +1,13 @@
 "use client";
 
-import PageTransition from "@/components/PageTransition";
-import Hero from "@/components/home/Hero";
-import Stats from "@/components/home/Stats";
-import Intro from "@/components/home/Intro";
-import Categories from "@/components/home/Categories";
-import FeaturedProjects from "@/components/home/FeaturedProjects";
-import Testimonials from "@/components/home/Testimonials";
-import ShowroomCTA from "@/components/home/ShowroomCTA";
+import PageTransition from "@/components/beb-ui/BebPageTransition";
+import Hero from "@/components/beb-sections/Beb01_Hero";
+import Stats from "@/components/beb-sections/Beb02_Stats";
+import Intro from "@/components/beb-sections/Beb03_Intro";
+import Categories from "@/components/beb-sections/Beb04_Categories";
+import FeaturedProjects from "@/components/beb-sections/Beb05_FeaturedProjects";
+import Testimonials from "@/components/beb-sections/Beb06_Testimonials";
+import ShowroomCTA from "@/components/beb-sections/Beb07_ShowroomCTA";
 
 export default function Home() {
   return (

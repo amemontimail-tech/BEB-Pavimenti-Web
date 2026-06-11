@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import PageTransition from "@/components/PageTransition";
-import AnimatedSection from "@/components/AnimatedSection";
-import Button from "@/components/Button";
-import { useLanguage } from "@/lib/LanguageContext";
+import PageTransition from "@/components/beb-ui/BebPageTransition";
+import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import Button from "@/components/beb-ui/BebButton";
+import { useLanguage } from "@/lib/BebLanguageContext";
 
 export default function ContattiPage() {
   const { t } = useLanguage();
@@ -50,7 +50,7 @@ export default function ContattiPage() {
                     {t.contact.phoneLabel}
                   </h3>
                   <a
-                    href="tel:+390172223888"
+                    href="tel:+390172222388"
                     className="text-base text-foreground hover:text-accent transition-colors duration-300"
                   >
                     {t.contact.phone}
