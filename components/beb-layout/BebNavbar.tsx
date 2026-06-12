@@ -14,6 +14,55 @@ const navLinks = [
   { href: "/contatti", key: "contact" as const },
 ];
 
+/** Animated nav link — text slides up on hover (clip-path roll effect) */
+function RollingLink({
+  href,
+  label,
+  isActive,
+  id,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  isActive: boolean;
+  id: string;
+  onClick?: () => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <Link
+      href={href}
+      id={id}
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative overflow-hidden flex flex-col"
+      style={{ height: "1.2em" }}
+    >
+      {/* Visible text */}
+      <motion.span
+        animate={{ y: hovered ? "-100%" : "0%" }}
+        transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+        className={`block text-xs tracking-widest uppercase whitespace-nowrap ${
+          isActive ? "text-foreground" : "text-muted"
+        }`}
+      >
+        {label}
+      </motion.span>
+      {/* Clone that slides in from below */}
+      <motion.span
+        animate={{ y: hovered ? "-100%" : "0%" }}
+        transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+        className="block text-xs tracking-widest uppercase whitespace-nowrap text-foreground"
+        style={{ position: "absolute", top: "100%" }}
+      >
+        {label}
+      </motion.span>
+    </Link>
+  );
+}
+
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const pathname = usePathname();
@@ -39,75 +88,72 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled || menuOpen
-            ? "bg-white/95 backdrop-blur-md border-b border-border"
-            : "bg-transparent"
-        }`}
-      >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-12">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center"
-            id="navbar-logo"
-          >
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <div className="mx-auto flex max-w-7xl items-start justify-between px-6 pt-5 lg:px-12">
+
+          {/* Logo — top left */}
+          <Link href="/" className="flex items-center" id="navbar-logo">
             <img
               src="/logo BEB.webp"
               alt="Logo BEB Pavimenti"
-              className="h-10 w-auto object-contain"
+              className="h-[120px] w-auto object-contain"
             />
           </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden items-center gap-10 lg:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-xs tracking-widest uppercase transition-colors duration-300 ${
-                  pathname === link.href
-                    ? "text-foreground"
-                    : "text-muted hover:text-foreground"
-                }`}
-                id={`nav-${link.key}`}
-              >
-                {t.nav[link.key]}
-              </Link>
-            ))}
-          </div>
+          {/* Desktop: floating centered nav pill */}
+          <div className="hidden lg:flex flex-col items-end gap-3">
+            {/* Nav pill */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className={`flex items-center gap-8 px-7 py-3 rounded-full transition-all duration-500 ${
+                scrolled
+                  ? "bg-white/95 backdrop-blur-md shadow-sm"
+                  : "bg-white/90 backdrop-blur-sm shadow-sm"
+              }`}
+            >
+              {navLinks.map((link) => (
+                <RollingLink
+                  key={link.href}
+                  href={link.href}
+                  label={t.nav[link.key]}
+                  isActive={pathname === link.href}
+                  id={`nav-${link.key}`}
+                />
+              ))}
+            </motion.div>
 
-          {/* Right side: language toggle + hamburger */}
-          <div className="flex items-center gap-6">
-            {/* Language Toggle */}
+            {/* Language toggle — below the pill, right-aligned */}
             <button
               onClick={() => setLang(lang === "it" ? "en" : "it")}
-              className="flex items-center gap-1 text-xs tracking-widest uppercase text-muted hover:text-foreground transition-colors duration-300"
+              className="flex items-center gap-1 text-xs tracking-widest uppercase transition-colors duration-300 px-2"
               id="language-toggle"
               aria-label="Toggle language"
             >
               <span
                 className={`transition-colors duration-300 ${
-                  lang === "it" ? "text-foreground font-medium" : ""
+                  lang === "it" ? "text-foreground font-medium" : "text-muted"
                 }`}
               >
                 IT
               </span>
-              <span className="text-border">/</span>
+              <span className="text-muted">/</span>
               <span
                 className={`transition-colors duration-300 ${
-                  lang === "en" ? "text-foreground font-medium" : ""
+                  lang === "en" ? "text-foreground font-medium" : "text-muted"
                 }`}
               >
                 EN
               </span>
             </button>
+          </div>
 
-            {/* Hamburger */}
+          {/* Mobile: hamburger */}
+          <div className="flex items-center lg:hidden pt-3">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5 lg:hidden"
+              className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5"
               id="menu-toggle"
               aria-label="Toggle menu"
             >
@@ -138,7 +184,7 @@ export default function Navbar() {
               />
             </button>
           </div>
-        </nav>
+        </div>
       </header>
 
       {/* Mobile Menu Overlay */}
