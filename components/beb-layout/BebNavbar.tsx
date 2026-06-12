@@ -89,7 +89,7 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="mx-auto flex max-w-7xl items-start justify-between px-6 pt-5 lg:px-12">
+        <div className="relative flex items-start justify-between px-6 pt-5 lg:px-12">
 
           {/* Logo — top left */}
           <Link href="/" className="flex items-center" id="navbar-logo">
@@ -100,8 +100,8 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop: floating centered nav pill */}
-          <div className="hidden lg:flex flex-col items-end gap-3">
+          {/* Desktop: floating centered nav pill — absolute center */}
+          <div className="hidden lg:flex flex-col items-center gap-3 absolute left-1/2 -translate-x-1/2 top-5">
             {/* Nav pill */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -123,11 +123,13 @@ export default function Navbar() {
                 />
               ))}
             </motion.div>
+          </div>
 
-            {/* Language toggle — below the pill, right-aligned */}
+          {/* Language toggle — top right */}
+          <div className="hidden lg:flex items-center pt-3">
             <button
               onClick={() => setLang(lang === "it" ? "en" : "it")}
-              className="flex items-center gap-1 text-xs tracking-widest uppercase transition-colors duration-300 px-2"
+              className="flex items-center gap-1 text-xs tracking-widest uppercase transition-colors duration-300"
               id="language-toggle"
               aria-label="Toggle language"
             >
