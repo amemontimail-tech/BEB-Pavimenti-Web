@@ -1,15 +1,157 @@
 "use client";
 
-import Image from "next/image";
+import { useRef } from "react";
 import Link from "next/link";
-import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/BebLanguageContext";
 
 const categoryImages = [
-  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
-  "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=800&q=80",
+  // Pavimenti & Rivestimenti
+  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=90",
+  // Ambiente Bagno
+  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=90",
+  // Parquet
+  "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=90",
 ];
+
+const BG_ALTERNATES = ["#ffffff", "#f8f7f5", "#ffffff"];
+
+interface CategoryBlockProps {
+  title: string;
+  desc: string;
+  cta: string;
+  image: string;
+  href: string;
+  index: number;
+}
+
+function CategoryBlock({
+  title,
+  desc,
+  cta,
+  image,
+  href,
+  index,
+}: CategoryBlockProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+
+  // Even index (0, 2) → image on RIGHT; Odd index (1) → image on LEFT
+  const imageOnLeft = index % 2 !== 0;
+
+  const imageSide = (
+    <div className="relative overflow-hidden" style={{ flex: "0 0 62%" }}>
+      {/* Reveal curtain */}
+      <motion.div
+        className="absolute inset-0 z-10"
+        style={{
+          background: "var(--color-surface)",
+          originX: imageOnLeft ? 1 : 0,
+        }}
+        initial={{ scaleX: 1 }}
+        animate={isInView ? { scaleX: 0 } : { scaleX: 1 }}
+        transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
+      />
+
+      {/* Parallax image */}
+      <motion.div className="absolute inset-0 scale-[1.1]" style={{ y: imageY }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+      </motion.div>
+
+      {/* Text overlay — bottom of image */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 p-8 lg:p-14">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+          className="flex flex-col items-start"
+        >
+          <p className="mb-4 text-[11px] tracking-[0.3em] uppercase text-white/50">
+            0{index + 1}
+          </p>
+          <h3 className="font-serif text-3xl tracking-tight text-white lg:text-[2.4rem]">
+            {title}
+          </h3>
+          <div className="my-5 h-px w-10 bg-white/35" />
+          <p className="max-w-xs text-sm leading-relaxed text-white/70">
+            {desc}
+          </p>
+          <Link
+            href={href}
+            className="group mt-8 inline-flex items-center gap-3 border border-white/35 px-5 py-2.5 text-[11px] tracking-[0.2em] uppercase text-white transition-all duration-400 hover:bg-white hover:text-black"
+          >
+            {cta}
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </motion.div>
+      </div>
+    </div>
+  );
+
+  const emptySide = (
+    <div
+      className="relative flex-1 overflow-hidden"
+      style={{ background: BG_ALTERNATES[index] }}
+    >
+      {/* Watermark number */}
+      <motion.span
+        className="absolute font-serif select-none pointer-events-none"
+        style={{
+          fontSize: "clamp(6rem, 12vw, 11rem)",
+          lineHeight: 1,
+          color: "var(--color-border)",
+          bottom: imageOnLeft ? "auto" : "2.5rem",
+          top: imageOnLeft ? "2.5rem" : "auto",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+      >
+        0{index + 1}
+      </motion.span>
+    </div>
+  );
+
+  return (
+    <div
+      ref={ref}
+      className="flex items-stretch"
+      style={{
+        minHeight: "88vh",
+        marginTop: index === 0 ? 0 : "3px",
+      }}
+    >
+      {imageOnLeft ? (
+        <>
+          {imageSide}
+          {emptySide}
+        </>
+      ) : (
+        <>
+          {emptySide}
+          {imageSide}
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function Categories() {
   const { t } = useLanguage();
@@ -19,54 +161,32 @@ export default function Categories() {
       title: t.home.cat1Title,
       desc: t.home.cat1Desc,
       image: categoryImages[0],
-      href: "/prodotti",
     },
     {
       title: t.home.cat2Title,
       desc: t.home.cat2Desc,
       image: categoryImages[1],
-      href: "/prodotti",
     },
     {
       title: t.home.cat3Title,
       desc: t.home.cat3Desc,
       image: categoryImages[2],
-      href: "/prodotti",
     },
   ];
 
   return (
-    <section className="bg-surface py-28 lg:py-40" id="categories">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid gap-8 md:grid-cols-3">
-          {categories.map((cat, i) => (
-            <AnimatedSection key={i} delay={i * 0.15}>
-              <Link href={cat.href} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden">
-                  <Image
-                    src={cat.image}
-                    alt={cat.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="mt-6">
-                  <h3 className="font-serif text-xl tracking-tight text-foreground">
-                    {cat.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {cat.desc}
-                  </p>
-                  <span className="mt-4 inline-block text-xs tracking-widest uppercase text-accent-dark transition-colors duration-300 group-hover:text-foreground">
-                    {t.home.catCta} →
-                  </span>
-                </div>
-              </Link>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
+    <section className="overflow-hidden" id="categories">
+      {categories.map((cat, i) => (
+        <CategoryBlock
+          key={i}
+          title={cat.title}
+          desc={cat.desc}
+          cta={t.home.catCta}
+          image={cat.image}
+          href="/prodotti"
+          index={i}
+        />
+      ))}
     </section>
   );
 }

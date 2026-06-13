@@ -122,7 +122,7 @@ const it: Dictionary = {
     stat2Label: "Metri quadri posati",
     stat2Value: "600.000+",
     stat3Label: "Appartamenti completati",
-    stat3Value: "4.000+",
+    stat3Value: "5.500+",
     introText:
       "B&B Pavimenti e Rivestimenti è il punto di riferimento a Savigliano per pavimenti, rivestimenti e soluzioni bagno. Da oltre mezzo secolo, accompagniamo ogni progetto con competenza, cura e passione per il bello.",
     cat1Title: "Pavimenti & Rivestimenti",
@@ -242,7 +242,7 @@ const en: Dictionary = {
     stat2Label: "Square meters laid",
     stat2Value: "600,000+",
     stat3Label: "Apartments completed",
-    stat3Value: "4,000+",
+    stat3Value: "5,500+",
     introText:
       "B&B Pavimenti e Rivestimenti is Savigliano's reference point for flooring, wall coverings, and bathroom solutions. For over half a century, we've accompanied every project with expertise, care, and a passion for beauty.",
     cat1Title: "Flooring & Wall Tiles",

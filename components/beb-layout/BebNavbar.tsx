@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,7 +14,7 @@ const navLinks = [
   { href: "/contatti", key: "contact" as const },
 ];
 
-/** Animated nav link — text slides up on hover (clip-path roll effect) */
+/** Animated nav link — text slides up on hover */
 function RollingLink({
   href,
   label,
@@ -40,7 +40,6 @@ function RollingLink({
       className="relative overflow-hidden flex flex-col"
       style={{ height: "1.2em" }}
     >
-      {/* Visible text */}
       <motion.span
         animate={{ y: hovered ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
@@ -50,7 +49,6 @@ function RollingLink({
       >
         {label}
       </motion.span>
-      {/* Clone that slides in from below */}
       <motion.span
         animate={{ y: hovered ? "-100%" : "0%" }}
         transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
@@ -66,14 +64,77 @@ function RollingLink({
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+
+  /**
+   * heroPassed = true  → hero section has fully left the viewport (scrolled past it)
+   * heroPassed = false → hero section is still (at least partially) visible
+   */
+  const [heroPassed, setHeroPassed] = useState(false);
+
+  /**
+   * logoVisible: once hero is passed, hide logo on scroll-down, show on scroll-up.
+   * While hero is on screen the logo is always visible.
+   */
+  const [logoVisible, setLogoVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+
+  // ── IntersectionObserver: watch #hero ──────────────────────────────────────
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          // Hero fully exited → trigger compact mode
+          setHeroPassed(true);
+        } else if (entry.intersectionRatio >= 0.6) {
+          // Hero is substantially back in view (60%+) → reset to initial state
+          setHeroPassed(false);
+          setLogoVisible(true);
+        }
+      },
+      {
+        // Fire at 0% (exit) and 60% (re-entry)
+        threshold: [0, 0.6],
+      }
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, []);
+
+  // ── Scroll direction: only relevant after hero has passed ──────────────────
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const prev = lastScrollY.current;
+
+        if (heroPassed) {
+          if (currentY > prev) {
+            // scrolling down → hide logo
+            setLogoVisible(false);
+          } else if (currentY < prev) {
+            // scrolling up even 1px → show logo
+            setLogoVisible(true);
+          }
+        }
+
+        lastScrollY.current = currentY;
+        ticking.current = false;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [heroPassed]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -88,30 +149,63 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="relative flex items-start justify-between px-6 pt-5 lg:px-12">
+      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        {/*
+          Layout: flex row, items-center.
+          Logo on the left (120px, always present in DOM for layout stability).
+          Nav pill absolutely centered in the full header width.
+          IT/EN on the right.
 
-          {/* Logo — top left */}
-          <Link href="/" className="flex items-center" id="navbar-logo">
-            <img
-              src="/logo BEB.webp"
-              alt="Logo BEB Pavimenti"
-              className="h-[120px] w-auto object-contain"
-            />
-          </Link>
+          When heroPassed = false:
+            – header is taller (logo is 120px)
+            – nav pill sits at vertical center of the header
+          When heroPassed = true:
+            – header compresses to 64px
+            – nav pill stays centered in the smaller header
+            – logo fades based on scroll direction
+        */}
+        <motion.div
+          className="relative flex items-center justify-between px-6 lg:px-12"
+          animate={{ height: heroPassed && !logoVisible ? 64 : 120 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* ── LOGO ── */}
+          <motion.div
+            className="pointer-events-auto flex-shrink-0"
+            animate={{
+              opacity: logoVisible ? 1 : 0,
+              y: logoVisible ? 0 : -20,
+            }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            style={{ pointerEvents: logoVisible ? "auto" : "none" }}
+          >
+            <Link href="/" className="flex items-center" id="navbar-logo">
+              <img
+                src="/logo BEB.webp"
+                alt="Logo BEB Pavimenti"
+                className="h-[120px] w-auto object-contain"
+              />
+            </Link>
+          </motion.div>
 
-          {/* Desktop: floating centered nav pill — absolute center */}
-          <div className="hidden lg:flex flex-col items-center gap-3 absolute left-1/2 -translate-x-1/2 top-5">
-            {/* Nav pill */}
+          {/* ── DESKTOP NAV PILL (centered absolute) ── */}
+          <div
+            className="hidden lg:flex pointer-events-auto"
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className={`flex items-center gap-8 px-7 py-3 rounded-full transition-all duration-500 ${
-                scrolled
+              className={`flex items-center gap-8 px-7 py-3 rounded-full ${
+                heroPassed
                   ? "bg-white/95 backdrop-blur-md shadow-sm"
                   : "bg-white/90 backdrop-blur-sm shadow-sm"
               }`}
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               {navLinks.map((link) => (
                 <RollingLink
@@ -125,8 +219,16 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          {/* Language toggle — top right */}
-          <div className="hidden lg:flex items-center pt-3">
+          {/* ── LANGUAGE TOGGLE (right) — same visibility as logo ── */}
+          <motion.div
+            className="hidden lg:flex items-center pointer-events-auto flex-shrink-0"
+            animate={{
+              opacity: logoVisible ? 1 : 0,
+              y: logoVisible ? 0 : -20,
+            }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            style={{ pointerEvents: logoVisible ? "auto" : "none" }}
+          >
             <button
               onClick={() => setLang(lang === "it" ? "en" : "it")}
               className="flex items-center gap-1 text-xs tracking-widest uppercase transition-colors duration-300"
@@ -149,10 +251,10 @@ export default function Navbar() {
                 EN
               </span>
             </button>
-          </div>
+          </motion.div>
 
-          {/* Mobile: hamburger */}
-          <div className="flex items-center lg:hidden pt-3">
+          {/* ── MOBILE: hamburger ── */}
+          <div className="flex items-center lg:hidden pointer-events-auto">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5"
@@ -186,7 +288,7 @@ export default function Navbar() {
               />
             </button>
           </div>
-        </div>
+        </motion.div>
       </header>
 
       {/* Mobile Menu Overlay */}

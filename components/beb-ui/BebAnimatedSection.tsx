@@ -34,9 +34,9 @@ export default function AnimatedSection({
       initial={{ opacity: 0, ...offset }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
       transition={{
-        duration: 0.9,
+        duration: 1.4,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >
