@@ -68,44 +68,55 @@ export default function Navbar() {
   /**
    * heroPassed = true  → hero section has fully left the viewport (scrolled past it)
    * heroPassed = false → hero section is still (at least partially) visible
+   *
+   * On pages without a #hero we default to true immediately so the navbar
+   * starts in compact mode (same look as when you've scrolled past the hero).
    */
   const [heroPassed, setHeroPassed] = useState(false);
-
-  /**
-   * logoVisible: once hero is passed, hide logo on scroll-down, show on scroll-up.
-   * While hero is on screen the logo is always visible.
-   */
   const [logoVisible, setLogoVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
+  // ── When pathname changes, reset state and re-check for #hero ──────────────
+  useEffect(() => {
+    setHeroPassed(false);
+    setLogoVisible(true);
+  }, [pathname]);
+
   // ── IntersectionObserver: watch #hero ──────────────────────────────────────
   useEffect(() => {
-    const hero = document.getElementById("hero");
-    if (!hero) return;
+    // Small delay to let the new page render before querying #hero
+    const timer = setTimeout(() => {
+      const hero = document.getElementById("hero");
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          // Hero fully exited → trigger compact mode
-          setHeroPassed(true);
-        } else if (entry.intersectionRatio >= 0.6) {
-          // Hero is substantially back in view (60%+) → reset to initial state
-          setHeroPassed(false);
-          setLogoVisible(true);
-        }
-      },
-      {
-        // Fire at 0% (exit) and 60% (re-entry)
-        threshold: [0, 0.6],
+      // No hero on this page → stay in compact mode
+      if (!hero) {
+        setHeroPassed(true);
+        setLogoVisible(true);
+        return;
       }
-    );
 
-    observer.observe(hero);
-    return () => observer.disconnect();
-  }, []);
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) {
+            setHeroPassed(true);
+          } else if (entry.intersectionRatio >= 0.6) {
+            setHeroPassed(false);
+            setLogoVisible(true);
+          }
+        },
+        { threshold: [0, 0.6] }
+      );
+
+      observer.observe(hero);
+      // eslint-disable-next-line consistent-return
+      return () => observer.disconnect();
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   // ── Scroll direction: only relevant after hero has passed ──────────────────
   useEffect(() => {

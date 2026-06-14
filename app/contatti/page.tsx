@@ -17,7 +17,7 @@ export default function ContattiPage() {
 
   return (
     <PageTransition>
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="pt-32 pb-20 lg:pt-44 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <AnimatedSection>
@@ -31,13 +31,15 @@ export default function ContattiPage() {
         </div>
       </section>
 
-      {/* Content */}
-      <section className="pb-28 lg:pb-40">
+      {/* ── Info + Form ──────────────────────────────────────── */}
+      <section className="pb-20 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-            {/* Contact Info */}
+
+            {/* ── Left: Contact Info ── */}
             <AnimatedSection>
               <div className="space-y-10">
+
                 <div>
                   <h3 className="text-xs tracking-widest uppercase text-muted mb-3">
                     {t.contact.addressLabel}
@@ -50,7 +52,7 @@ export default function ContattiPage() {
                     {t.contact.phoneLabel}
                   </h3>
                   <a
-                    href="tel:+390172222388"
+                    href="tel:+39017222388"
                     className="text-base text-foreground hover:text-accent transition-colors duration-300"
                   >
                     {t.contact.phone}
@@ -73,27 +75,15 @@ export default function ContattiPage() {
                   <h3 className="text-xs tracking-widest uppercase text-muted mb-3">
                     {t.contact.hoursLabel}
                   </h3>
-                  <p className="text-base text-foreground">{t.contact.hours1}</p>
-                  <p className="text-base text-foreground">{t.contact.hours2}</p>
+                  {/* Orari corretti */}
+                  <p className="text-base text-foreground">Lun – Ven: 8:30 – 12:00 / 14:30 – 19:00</p>
+                  <p className="text-base text-foreground">Sabato: 8:30 – 12:00</p>
                 </div>
-              </div>
 
-              {/* Map */}
-              <div className="mt-12 aspect-[4/3] w-full overflow-hidden bg-surface">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2827.1!2d7.6571!3d44.6476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDM4JzUxLjQiTiA3wrAzOScyNS42IkU!5e0!3m2!1sit!2sit!4v1234567890"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="B&B Pavimenti location"
-                />
               </div>
             </AnimatedSection>
 
-            {/* Contact Form */}
+            {/* ── Right: Form ── */}
             <AnimatedSection delay={0.15}>
               {submitted ? (
                 <div className="flex h-full items-center justify-center">
@@ -163,9 +153,34 @@ export default function ContattiPage() {
                 </form>
               )}
             </AnimatedSection>
+
           </div>
         </div>
       </section>
+
+      {/* ── Full-width Google Map ─────────────────────────────── */}
+      {/*
+        Coordinate precise: Via Togliatti 50, 12038 Savigliano (CN)
+        lat: 44.6428, lng: 7.6593
+        Embed con marker esatto tramite place_id di B&B Pavimenti
+      */}
+      <section className="w-full" id="mappa">
+        <div className="h-[480px] w-full lg:h-[560px]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.4562!2d7.656617!3d44.642814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ceba6f9f1b1f41%3A0x5b3e7c3a2d6a9c1b!2sVia%20Palmiro%20Togliatti%2C%2050%2C%2012038%20Savigliano%20CN!5e0!3m2!1sit!2sit!4v1718379600000!5m2!1sit!2sit"
+            width="100%"
+            height="100%"
+            style={{ border: 0, display: "block" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="B&B Pavimenti e Rivestimenti — Via Togliatti 50, Savigliano"
+          />
+        </div>
+      </section>
+
+      {/* bottom spacing */}
+      <div className="pb-16 lg:pb-24" />
     </PageTransition>
   );
 }
