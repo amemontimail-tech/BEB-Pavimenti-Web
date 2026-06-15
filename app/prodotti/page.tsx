@@ -3,41 +3,30 @@
 import Image from "next/image";
 import PageTransition from "@/components/beb-ui/BebPageTransition";
 import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
-import Button from "@/components/beb-ui/BebButton";
 import { useLanguage } from "@/lib/BebLanguageContext";
+import { motion } from "framer-motion";
 
-const categoryImages = [
-  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=80",
-  "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=1200&q=80",
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80",
-];
+// Define the spans for each of the 11 items to create a perfectly packed magazine layout
+// It packs seamlessly into a 4-col (desktop) and 2-col (tablet) grid without holes.
+const getGridSpan = (index: number) => {
+  switch (index) {
+    case 0: return "col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2"; // Large square
+    case 1: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
+    case 2: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
+    case 3: return "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2"; // Large square
+    case 4: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
+    case 5: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
+    case 6: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
+    case 7: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
+    case 8: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
+    case 9: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
+    case 10: return "col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-1"; // Vasche (Full Width)
+    default: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1";
+  }
+};
 
 export default function ProdottiPage() {
   const { t } = useLanguage();
-
-  const categories = [
-    {
-      title: t.products.cat1Title,
-      desc: t.products.cat1Desc,
-      image: categoryImages[0],
-    },
-    {
-      title: t.products.cat2Title,
-      desc: t.products.cat2Desc,
-      image: categoryImages[1],
-    },
-    {
-      title: t.products.cat3Title,
-      desc: t.products.cat3Desc,
-      image: categoryImages[2],
-    },
-    {
-      title: t.products.cat4Title,
-      desc: t.products.cat4Desc,
-      image: categoryImages[3],
-    },
-  ];
 
   return (
     <PageTransition>
@@ -45,53 +34,58 @@ export default function ProdottiPage() {
       <section className="pt-32 pb-20 lg:pt-44 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <AnimatedSection>
-            <h1 className="font-serif text-5xl leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+            <h1 className="font-serif font-bold text-6xl leading-tight tracking-tight text-foreground sm:text-7xl lg:text-8xl drop-shadow-sm">
               {t.products.heroHeadline}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl font-light">
               {t.products.heroSub}
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="pb-28 lg:pb-40">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="space-y-24 lg:space-y-32">
-            {categories.map((cat, i) => (
-              <AnimatedSection key={i} delay={0.1}>
-                <div
-                  className={`grid gap-8 lg:grid-cols-2 lg:gap-16 items-center`}
-                >
-                  <div className={`${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={cat.image}
-                        alt={cat.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                    </div>
-                  </div>
-                  <div className={`flex flex-col justify-center ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <h2 className="font-serif text-3xl tracking-tight text-foreground sm:text-4xl">
-                      {cat.title}
-                    </h2>
-                    <p className="mt-4 text-base leading-relaxed text-muted lg:text-lg lg:leading-relaxed">
-                      {cat.desc}
-                    </p>
-                    <div className="mt-8">
-                      <Button href="/contatti" variant="outline">
-                        {t.products.cta}
-                      </Button>
-                    </div>
-                  </div>
+      {/* Categories - Luxury Full-Bleed Grid */}
+      <section className="bg-foreground py-1" id="categories">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-flow-dense gap-1 auto-rows-[300px]">
+          {t.products.productCategories.map((cat, i) => (
+            <div
+              key={i}
+              className={`group relative overflow-hidden block ${getGridSpan(i)}`}
+            >
+              {/* Background Image with Scale Animation */}
+              <motion.div
+                className="absolute inset-0 w-full h-full"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={cat.imageId}
+                  alt={cat.title}
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              </motion.div>
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
+
+              {/* Text Content */}
+              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                <div className="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
+                  <p className="mb-3 text-[10px] tracking-[0.2em] uppercase text-white/60 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    {String(i + 1).padStart(2, '0')} — {t.products.cta}
+                  </p>
+                  <h3 className="font-serif text-2xl md:text-3xl tracking-tight text-white mb-2">
+                    {cat.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-white/90 max-w-md opacity-0 transition-opacity duration-500 group-hover:opacity-100 drop-shadow-sm">
+                    {cat.desc}
+                  </p>
                 </div>
-              </AnimatedSection>
-            ))}
-          </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </PageTransition>

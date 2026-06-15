@@ -7,7 +7,6 @@ import Intro from "@/components/beb-sections/Beb03_Intro";
 import Categories from "@/components/beb-sections/Beb04_Categories";
 import FeaturedProjects from "@/components/beb-sections/Beb05_FeaturedProjects";
 import Testimonials from "@/components/beb-sections/Beb06_Testimonials";
-import ShowroomCTA from "@/components/beb-sections/Beb07_ShowroomCTA";
 
 export default function Home() {
   return (
@@ -18,7 +17,6 @@ export default function Home() {
       <Categories />
       <FeaturedProjects />
       <Testimonials />
-      <ShowroomCTA />
     </PageTransition>
   );
 }

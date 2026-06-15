@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+@source "../app";
+@source "../components";
+@source "../lib";
 @theme inline {
   --color-foreground: #111111;
   --color-accent: #C9B99A;
@@ -31,4 +33,16 @@ body {
 /* Prevent layout shift before language context hydration */
 html {
   overflow-x: hidden;
+}
+
+@keyframes marquee-left-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left-right {
+  animation: marquee-left-right 40s linear infinite;
+}
+.animate-marquee-left-right:hover {
+  animation-play-state: paused;
 }

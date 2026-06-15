@@ -29,12 +29,7 @@ export interface Dictionary {
     projectsTitle: string;
     projectsSub: string;
     testimonialsTitle: string;
-    testimonial1Quote: string;
-    testimonial1Author: string;
-    testimonial2Quote: string;
-    testimonial2Author: string;
-    testimonial3Quote: string;
-    testimonial3Author: string;
+    testimonials: Array<{ quote: string; author: string }>;
     ctaHeadline: string;
     ctaSub: string;
     ctaButton: string;
@@ -67,6 +62,7 @@ export interface Dictionary {
     cat3Desc: string;
     cat4Title: string;
     cat4Desc: string;
+    productCategories: Array<{ title: string; desc: string; imageId: string }>;
     cta: string;
   };
   projects: {
@@ -120,9 +116,9 @@ const it: Dictionary = {
     stat1Label: "Anni di esperienza",
     stat1Value: "55+",
     stat2Label: "Metri quadri posati",
-    stat2Value: "600.000+",
+    stat2Value: "+1.500.000",
     stat3Label: "Appartamenti completati",
-    stat3Value: "5.500+",
+    stat3Value: "7000+",
     introText:
       "B&B Pavimenti e Rivestimenti è il punto di riferimento a Savigliano per pavimenti, rivestimenti e soluzioni bagno. Da oltre mezzo secolo, accompagniamo ogni progetto con competenza, cura e passione per il bello.",
     cat1Title: "Pavimenti & Rivestimenti",
@@ -135,15 +131,28 @@ const it: Dictionary = {
     projectsTitle: "Progetti selezionati",
     projectsSub: "Alcuni dei nostri lavori più recenti",
     testimonialsTitle: "Cosa dicono i nostri clienti",
-    testimonial1Quote:
-      "Professionalità e gusto impeccabile. Il nostro bagno è diventato una spa.",
-    testimonial1Author: "Marco R., Savigliano",
-    testimonial2Quote:
-      "Ci hanno guidato nella scelta con pazienza e competenza straordinaria.",
-    testimonial2Author: "Giulia T., Cuneo",
-    testimonial3Quote:
-      "Qualità dei materiali eccezionale. Risultato oltre le aspettative.",
-    testimonial3Author: "Andrea B., Torino",
+    testimonials: [
+      { quote: "Ampia scelta di materiali di eccellente qualità e grande professionalità dello staff.", author: "Francesca G." },
+      { quote: "Ci hanno accompagnato nella realizzazione dei nostri progetti con grande attenzione e cura del dettaglio.", author: "Marco R." },
+      { quote: "Showroom magnifico, si percepisce subito la competenza e la pazienza nell'ascoltare le richieste.", author: "Laura M." },
+      { quote: "Qualità dei materiali eccezionale. Il risultato del nostro bagno è andato oltre le aspettative.", author: "Andrea B." },
+      { quote: "Personale super preparato. Hanno saputo consigliarci il parquet perfetto per la nostra zona giorno.", author: "Giulia T." },
+      { quote: "Lavori eseguiti nei tempi previsti. I posatori sono stati precisi e pulitissimi.", author: "Roberto F." },
+      { quote: "Ampia scelta e materiali di altissima qualità. Rifaremo sicuramente altri lavori con loro!", author: "Davide S." },
+      { quote: "Gentilezza e professionalità dal primo incontro fino a lavoro finito. 5 stelle meritatissime.", author: "Simona P." },
+      { quote: "Servizio impeccabile e consulenza d'arredo davvero preziosa per la nostra nuova casa.", author: "Matteo C." },
+      { quote: "Ottimo rapporto qualità-prezzo e vasta scelta di pavimenti e rivestimenti.", author: "Silvia L." },
+      { quote: "Posa del parquet a regola d'arte. Azienda storica di Savigliano che conferma la sua serietà.", author: "Giovanni D." },
+      { quote: "Massima disponibilità per trovare soluzioni su misura per il nostro bagno. Molto soddisfatti.", author: "Chiara V." },
+      { quote: "Un punto di riferimento. Hanno risolto un problema di umidità consigliandoci i materiali giusti.", author: "Stefano M." },
+      { quote: "Cortesia, puntualità e pulizia in fase di montaggio. Consigliatissimo.", author: "Valentina P." },
+      { quote: "Materiali stupendi e personale sempre sorridente e pronto ad aiutarti.", author: "Luca B." },
+      { quote: "Hanno capito perfettamente lo stile che volevamo e ci hanno proposto soluzioni bellissime.", author: "Alessia N." },
+      { quote: "Dalla scelta nello showroom fino alla posa, tutto è stato perfetto.", author: "Enrico F." },
+      { quote: "B&B Pavimenti è una garanzia. Mi sono affidata a loro per la seconda volta ed è stato un successo.", author: "Paola G." },
+      { quote: "Piastrelle di design introvabili altrove nella zona. Top!", author: "Federico A." },
+      { quote: "Un team fantastico che lavora con passione. Il nuovo bagno è uno spettacolo.", author: "Martina Z." }
+    ],
     ctaHeadline: "Vieni in showroom",
     ctaSub:
       "Tocca con mano i materiali e lasciati ispirare dai nostri ambienti.",
@@ -172,9 +181,8 @@ const it: Dictionary = {
   },
   products: {
     title: "Prodotti — B&B Pavimenti",
-    heroHeadline: "I nostri prodotti",
-    heroSub:
-      "Una selezione curata di materiali per ogni stile e ogni progetto.",
+    heroHeadline: "I Nostri Prodotti",
+    heroSub: "Scopri una collezione esclusiva dove il design incontra l'eccellenza. Una selezione curata dei materiali più pregiati, pensata per trasformare la tua visione in realtà e donare ad ogni ambiente un'allure di lusso senza tempo.",
     cat1Title: "Pavimenti & Rivestimenti",
     cat1Desc:
       "Ceramiche, gres porcellanato, pietre naturali e materiali innovativi. Per pavimenti e pareti che definiscono il carattere di ogni ambiente.",
@@ -187,6 +195,19 @@ const it: Dictionary = {
     cat4Title: "Carta da Parati",
     cat4Desc:
       "Texture, pattern e materiali esclusivi per pareti che diventano protagoniste dell'arredamento.",
+    productCategories: [
+      { title: "Pavimenti e Rivestimenti", desc: "Ceramiche di altissima qualità e gres porcellanato all'avanguardia per trasformare ogni superficie in un'opera d'arte. Materiali pensati per esaltare il design unico della tua casa.", imageId: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Parquet e Legno", desc: "Essenze pregiate accuratamente selezionate per pavimenti che trasmettono calore, eleganza naturale e una sensazione di puro comfort sotto i piedi.", imageId: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Linoleum", desc: "Superfici versatili ed ecologiche, progettate con tecnologie moderne per adattarsi perfettamente a ogni ambiente contemporaneo, garantendo resistenza e stile.", imageId: "https://images.unsplash.com/photo-1581428982868-e410dd147a90?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Materiali da Esterno", desc: "Soluzioni resistenti, durature e di altissimo pregio estetico per outdoor, terrazze esclusive e giardini, create per vivere all'aperto senza compromessi.", imageId: "https://images.unsplash.com/photo-1600566753086-00f18efc2291?q=80&w=2000&auto=format&fit=crop" },
+      { title: "PVC", desc: "Il connubio perfetto tra praticità assoluta ed estetica raffinata in un materiale innovativo e duraturo, ideale per progetti di interior design dinamici.", imageId: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Accessori Bagno", desc: "Il vero lusso risiede nei dettagli: accessori dal design esclusivo pensati per completare e arricchire la tua personale oasi di benessere quotidiano.", imageId: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Rubinetterie", desc: "Forme scultoree, linee eleganti e la migliore tecnologia per offrirti un'esperienza dell'acqua senza compromessi e un tocco di classe senza tempo.", imageId: "https://images.unsplash.com/photo-1585058178822-297eb0c7b74f?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Mobili da Bagno", desc: "Design esclusivo, finiture artigianali e materiali pregiati per arredare la sala da bagno con un'estetica ricercata e una funzionalità impeccabile.", imageId: "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Box Doccia", desc: "Cristalli purissimi, spessori importanti e linee minimali che si fondono per creare la massima espressione del relax e dell'eleganza contemporanea.", imageId: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Piatti Doccia", desc: "Superfici sottili, texture raffinate ed eleganti, progettate per integrarsi perfettamente a filo pavimento garantendo sicurezza e un impatto visivo mozzafiato.", imageId: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Vasche", desc: "Autentiche sculture dedicate al tuo benessere fisico e mentale, progettate per essere le protagoniste indiscusse e lussuose della tua stanza da bagno.", imageId: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2000&auto=format&fit=crop" }
+    ],
     cta: "Richiedi informazioni",
   },
   projects: {
@@ -240,9 +261,9 @@ const en: Dictionary = {
     stat1Label: "Years of experience",
     stat1Value: "55+",
     stat2Label: "Square meters laid",
-    stat2Value: "600,000+",
+    stat2Value: "+1,500,000",
     stat3Label: "Apartments completed",
-    stat3Value: "5,500+",
+    stat3Value: "7000+",
     introText:
       "B&B Pavimenti e Rivestimenti is Savigliano's reference point for flooring, wall coverings, and bathroom solutions. For over half a century, we've accompanied every project with expertise, care, and a passion for beauty.",
     cat1Title: "Flooring & Wall Tiles",
@@ -255,15 +276,28 @@ const en: Dictionary = {
     projectsTitle: "Selected projects",
     projectsSub: "Some of our most recent work",
     testimonialsTitle: "What our clients say",
-    testimonial1Quote:
-      "Outstanding professionalism and impeccable taste. Our bathroom became a spa.",
-    testimonial1Author: "Marco R., Savigliano",
-    testimonial2Quote:
-      "They guided us through the selection with extraordinary patience and expertise.",
-    testimonial2Author: "Giulia T., Cuneo",
-    testimonial3Quote:
-      "Exceptional material quality. Results beyond expectations.",
-    testimonial3Author: "Andrea B., Turin",
+    testimonials: [
+      { quote: "Wide choice of excellent quality materials and great professionalism of the staff.", author: "Francesca G." },
+      { quote: "They accompanied us in the realization of our projects with great attention and care for detail.", author: "Marco R." },
+      { quote: "Magnificent showroom, you immediately perceive the competence and patience in listening to requests.", author: "Laura M." },
+      { quote: "Exceptional material quality. The result of our bathroom went beyond expectations.", author: "Andrea B." },
+      { quote: "Super prepared staff. They were able to advise us on the perfect parquet for our living area.", author: "Giulia T." },
+      { quote: "Work completed on schedule. The installers were precise and very clean.", author: "Roberto F." },
+      { quote: "Wide choice and highest quality materials. We will definitely do other work with them!", author: "Davide S." },
+      { quote: "Kindness and professionalism from the first meeting to the finished work. Well deserved 5 stars.", author: "Simona P." },
+      { quote: "Impeccable service and truly precious furnishing advice for our new home.", author: "Matteo C." },
+      { quote: "Excellent value for money and vast choice of floors and coverings.", author: "Silvia L." },
+      { quote: "Parquet laying done to perfection. Historic Savigliano company that confirms its seriousness.", author: "Giovanni D." },
+      { quote: "Maximum availability to find tailor-made solutions for our bathroom. Very satisfied.", author: "Chiara V." },
+      { quote: "A point of reference. They solved a humidity problem by recommending the right materials.", author: "Stefano M." },
+      { quote: "Courtesy, punctuality and cleanliness during assembly. Highly recommended.", author: "Valentina P." },
+      { quote: "Beautiful materials and staff always smiling and ready to help.", author: "Luca B." },
+      { quote: "They perfectly understood the style we wanted and proposed beautiful solutions.", author: "Alessia N." },
+      { quote: "From the choice in the showroom to the installation, everything was perfect.", author: "Enrico F." },
+      { quote: "B&B Pavimenti is a guarantee. I relied on them for the second time and it was a success.", author: "Paola G." },
+      { quote: "Designer tiles unavailable elsewhere in the area. Top!", author: "Federico A." },
+      { quote: "A fantastic team that works with passion. The new bathroom is spectacular.", author: "Martina Z." }
+    ],
     ctaHeadline: "Visit our showroom",
     ctaSub: "Touch the materials and let our spaces inspire you.",
     ctaButton: "Get directions",
@@ -291,8 +325,8 @@ const en: Dictionary = {
   },
   products: {
     title: "Products — B&B Pavimenti",
-    heroHeadline: "Our products",
-    heroSub: "A curated selection of materials for every style and project.",
+    heroHeadline: "Our Products",
+    heroSub: "Discover an exclusive collection where design meets excellence. A curated selection of the finest materials, conceived to turn your vision into reality and bestow a timeless, luxurious allure upon every space.",
     cat1Title: "Flooring & Wall Tiles",
     cat1Desc:
       "Ceramics, porcelain stoneware, natural stones, and innovative materials. For floors and walls that define the character of every space.",
@@ -305,6 +339,19 @@ const en: Dictionary = {
     cat4Title: "Wallpaper",
     cat4Desc:
       "Textures, patterns, and exclusive materials for walls that become the protagonists of interior design.",
+    productCategories: [
+      { title: "Flooring & Wall Tiles", desc: "Highest quality ceramics and cutting-edge porcelain stoneware to transform every surface into a work of art. Materials designed to enhance your unique design.", imageId: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Parquet & Wood", desc: "Carefully selected fine woods for floors that transmit warmth, natural elegance, and a sensation of pure comfort beneath your feet.", imageId: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Linoleum", desc: "Versatile and ecological surfaces, engineered with modern technologies to adapt perfectly to any contemporary environment, ensuring both resilience and style.", imageId: "https://images.unsplash.com/photo-1581428982868-e410dd147a90?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Outdoor Materials", desc: "Resistant, durable, and highly prestigious solutions for outdoors, exclusive terraces, and gardens, created for uncompromising outdoor living.", imageId: "https://images.unsplash.com/photo-1600566753086-00f18efc2291?q=80&w=2000&auto=format&fit=crop" },
+      { title: "PVC", desc: "The perfect blend of absolute practicality and refined aesthetics in an innovative, durable material, ideal for dynamic interior design projects.", imageId: "https://images.unsplash.com/photo-1522444195799-478538b28823?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Bathroom Accessories", desc: "True luxury lies in the details: exclusively designed accessories intended to complete and enrich your personal oasis of daily well-being.", imageId: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Faucets", desc: "Sculptural forms, elegant lines, and the finest technology to offer an uncompromising water experience and a touch of timeless class.", imageId: "https://images.unsplash.com/photo-1585058178822-297eb0c7b74f?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Bathroom Furniture", desc: "Exclusive design, artisanal finishes, and fine materials to furnish the bathroom with sophisticated aesthetics and impeccable functionality.", imageId: "https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Shower Enclosures", desc: "Purest crystals, substantial thicknesses, and minimal lines that merge to create the ultimate expression of relaxation and contemporary elegance.", imageId: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Shower Trays", desc: "Thin surfaces, refined and elegant textures, designed to integrate perfectly flush with the floor, ensuring safety and breathtaking visual impact.", imageId: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Bathtubs", desc: "Authentic sculptures dedicated to your physical and mental well-being, designed to be the undisputed and luxurious centerpieces of your bathroom.", imageId: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=2000&auto=format&fit=crop" }
+    ],
     cta: "Request information",
   },
   projects: {
