@@ -11,16 +11,18 @@ import { motion } from "framer-motion";
 const getGridSpan = (index: number) => {
   switch (index) {
     case 0: return "col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2"; // Large square
-    case 1: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
-    case 2: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
-    case 3: return "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2"; // Large square
+    case 1: return "col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2"; // Large square (Rubinetterie)
+    case 2: return "col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2"; // Large square (Vasche)
+    case 3: return "col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2"; // Large square
     case 4: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
     case 5: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
     case 6: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
     case 7: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1"; // Small
-    case 8: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
-    case 9: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // Wide
-    case 10: return "col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-1"; // Vasche (Full Width)
+    case 8: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-1"; // PVC Wide
+    case 9: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-3"; // Vertical Accessori
+    case 10: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-2"; // Box Doccia Square
+    case 11: return "col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-2"; // Piatti Doccia Square
+    case 12: return "col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2 lg:row-span-2"; // Mobili da Bagno Square
     default: return "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1";
   }
 };
@@ -62,7 +64,7 @@ export default function ProdottiPage() {
                 <img
                   src={cat.imageId}
                   alt={cat.title}
-                  className="w-full h-full object-cover object-center"
+                  className={`w-full h-full object-cover ${i === 11 ? 'object-[50%_25%]' : i === 12 ? 'object-bottom' : 'object-center'}`}
                   loading="lazy"
                 />
               </motion.div>
