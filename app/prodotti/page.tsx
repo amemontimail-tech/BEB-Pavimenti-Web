@@ -33,13 +33,13 @@ export default function ProdottiPage() {
   return (
     <PageTransition>
       {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-44 lg:pb-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      <section className="pt-32 pb-20 lg:pt-48 lg:pb-28 text-center">
+        <div className="mx-auto max-w-5xl px-6 lg:px-12">
           <AnimatedSection>
-            <h1 className="font-serif font-bold text-6xl leading-tight tracking-tight text-foreground sm:text-7xl lg:text-8xl drop-shadow-sm">
+            <h1 className="font-serif font-bold text-6xl leading-tight tracking-tight text-foreground sm:text-7xl lg:text-8xl drop-shadow-sm mx-auto">
               {t.products.heroHeadline}
             </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl font-light">
+            <p className="mt-8 mx-auto max-w-2xl text-lg leading-relaxed text-muted sm:text-xl font-light">
               {t.products.heroSub}
             </p>
           </AnimatedSection>

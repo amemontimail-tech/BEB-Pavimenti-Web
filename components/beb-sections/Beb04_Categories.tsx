@@ -7,9 +7,9 @@ import { useLanguage } from "@/lib/BebLanguageContext";
 
 const categoryImages = [
   // Pavimenti & Rivestimenti
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=90",
+  "/prodotti/home-pavimenti.jpg",
   // Ambiente Bagno
-  "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=90",
+  "/prodotti/home-bagno.jpg",
   // Parquet
   "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=90",
 ];
@@ -40,7 +40,7 @@ function CategoryBlock({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
 
   // Even index (0, 2) → image on RIGHT; Odd index (1) → image on LEFT
   const imageOnLeft = index % 2 !== 0;
@@ -60,12 +60,12 @@ function CategoryBlock({
       />
 
       {/* Parallax image */}
-      <motion.div className="absolute inset-0 scale-[1.1]" style={{ y: imageY }}>
+      <motion.div className="absolute inset-0 scale-[1.05]" style={{ y: imageY }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover object-center"
+          className={`w-full h-full object-cover ${index === 0 ? 'object-[50%_80%]' : 'object-center'}`}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
