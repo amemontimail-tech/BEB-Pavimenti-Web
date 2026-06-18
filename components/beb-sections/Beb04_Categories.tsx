@@ -9,9 +9,9 @@ const categoryImages = [
   // Pavimenti & Rivestimenti
   "/prodotti/home-pavimenti.jpg",
   // Ambiente Bagno
-  "/prodotti/home-bagno.jpg",
+  "/prodotti/modern-bathroom.png",
   // Parquet
-  "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=90",
+  "/prodotti/parquet-stairs.jpg",
 ];
 
 const BG_ALTERNATES = ["#ffffff", "#f8f7f5", "#ffffff"];
