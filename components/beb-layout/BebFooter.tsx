@@ -92,16 +92,28 @@ export default function Footer() {
         {/* ── DIVIDER ── */}
         <div className="my-10 h-px w-full bg-white/10" />
 
-        {/* ── MIDDLE: address + tagline ── */}
-        <motion.p
-          className="text-xs tracking-widest uppercase text-white/35 max-w-xs"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Via Togliatti 50 · 12038 Savigliano (CN) · Italia
-        </motion.p>
+        {/* ── MIDDLE: address + legal info ── */}
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <motion.p
+            className="text-xs tracking-widest uppercase text-white/35 max-w-xs shrink-0"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Via Togliatti 50 · 12038 Savigliano (CN) · Italia
+          </motion.p>
+
+          <motion.p
+            className="text-[10px] leading-relaxed text-white/30 lg:text-right lg:max-w-2xl"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Codice Fiscale e Partita Iva: IT02535600049 • Registro imprese di Cuneo 02535600049 • CCIAA Cuneo 187426 R.E.A. • Cap. Soc. € 98.800.= i.v. Società capogruppo del Consorzio B&amp;B • Società consortile Cooperativa Attestato S.O.A.
+          </motion.p>
+        </div>
 
         {/* ── BOTTOM ROW: big brand name left · copyright right ── */}
         <div className="mt-16 pb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
