@@ -77,12 +77,14 @@ export default function Stats() {
     { value: t.home.stat1Value, label: t.home.stat1Label },
     { value: t.home.stat2Value, label: t.home.stat2Label },
     { value: t.home.stat3Value, label: t.home.stat3Label },
+    { value: t.home.stat4Value, label: t.home.stat4Label },
+    { value: t.home.stat5Value, label: t.home.stat5Label },
   ];
 
   return (
     <section className="border-y border-border bg-white py-20 lg:py-28" id="stats">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
+      <div className="mx-auto w-full px-6 lg:px-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-5 md:gap-0 md:divide-x md:divide-border">
           {stats.map((stat, i) => (
             <AnimatedSection
               key={i}

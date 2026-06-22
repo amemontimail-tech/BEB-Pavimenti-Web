@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { use, useState, useEffect } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,6 +39,23 @@ export default function ProjectDetailPage({
   const { slug } = use(params);
   const { t } = useLanguage();
   const project = getProjectBySlug(slug);
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (lightboxIndex === null || !project) return;
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowLeft") {
+        setLightboxIndex((prev) => (prev! > 0 ? prev! - 1 : project.images.length - 1));
+      }
+      if (e.key === "ArrowRight") {
+        setLightboxIndex((prev) => (prev! < project.images.length - 1 ? prev! + 1 : 0));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex, project]);
 
   if (!project) notFound();
 
@@ -103,7 +120,7 @@ export default function ProjectDetailPage({
                 {project.title}
               </h1>
               <span className="mb-1 text-xs tracking-[0.25em] uppercase text-muted">
-                {project.location} — {project.year}
+                {project.location}
               </span>
             </div>
 
@@ -136,7 +153,8 @@ export default function ProjectDetailPage({
                 className="mb-3 break-inside-avoid"
               >
                 <div
-                  className={`group relative overflow-hidden bg-surface ${
+                  onClick={() => setLightboxIndex(i)}
+                  className={`group relative overflow-hidden bg-surface cursor-pointer ${
                     img.tall ? "aspect-[3/4]" : "aspect-square"
                   }`}
                 >
@@ -186,6 +204,70 @@ export default function ProjectDetailPage({
           </div>
         </div>
       </section>
+
+      {/* ── Lightbox ──────────────────────────────────────────────── */}
+      {lightboxIndex !== null && project && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md">
+          {/* Close button */}
+          <button
+            onClick={() => setLightboxIndex(null)}
+            className="absolute right-4 top-4 sm:right-8 sm:top-8 z-50 text-white/70 hover:text-white transition-colors"
+            aria-label="Chiudi"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Prev button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex((prev) => (prev! > 0 ? prev! - 1 : project.images.length - 1));
+            }}
+            className="absolute left-2 sm:left-8 top-1/2 z-50 -translate-y-1/2 text-white/50 hover:text-white p-4 transition-colors hidden sm:block"
+            aria-label="Precedente"
+          >
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Next button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex((prev) => (prev! < project.images.length - 1 ? prev! + 1 : 0));
+            }}
+            className="absolute right-2 sm:right-8 top-1/2 z-50 -translate-y-1/2 text-white/50 hover:text-white p-4 transition-colors hidden sm:block"
+            aria-label="Successiva"
+          >
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+
+          {/* Image */}
+          <div className="relative h-[85vh] w-[95vw] sm:w-[85vw] max-w-7xl flex items-center justify-center" onClick={() => setLightboxIndex(null)}>
+            <div className="relative w-full h-full" onClick={(e) => e.stopPropagation()}>
+              <Image
+                src={project.images[lightboxIndex].src}
+                alt={project.images[lightboxIndex].alt}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                quality={100}
+                priority
+              />
+            </div>
+          </div>
+          
+          {/* Counter */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 text-xs tracking-widest font-mono">
+            {String(lightboxIndex + 1).padStart(2, '0')} / {String(project.images.length).padStart(2, '0')}
+          </div>
+        </div>
+      )}
     </PageTransition>
   );
 }

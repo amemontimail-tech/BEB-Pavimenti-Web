@@ -50,12 +50,13 @@ export default function FeaturedProjects() {
                     project.tall ? "aspect-[3/5]" : "aspect-square"
                   }`}
                 >
-                  {/* Image */}
                   <Image
                     src={project.coverImage}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
+                      project.coverPosition || "object-center"
+                    }`}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
 

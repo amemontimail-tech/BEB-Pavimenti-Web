@@ -5,112 +5,129 @@ export interface Project {
   title: string;
   location: string;
   category: ProjectCategory;
-  year: string;
   description: string;
   coverImage: string;
   /** All images shown in the masonry detail page */
   images: { src: string; alt: string; tall?: boolean }[];
   /** Used in Featured Projects grid */
   tall?: boolean;
+  /** Optional Tailwind object-position class for the cover image */
+  coverPosition?: string;
 }
 
 export const projects: Project[] = [
   {
-    slug: "villa-moderna-savigliano",
-    title: "Villa Moderna",
-    location: "Savigliano",
+    slug: "residenza-av-saluzzo",
+    title: "Residenza A+V",
+    location: "Saluzzo",
     category: "privati",
-    year: "2024",
     description:
-      "Una residenza privata completata con pavimenti in gres porcellanato effetto pietra e rivestimenti bagno in marmo travertino. Un progetto dove ogni dettaglio racconta cura e qualità.",
+      "Una residenza privata completata con cura dei dettagli, pavimentazioni eleganti e rivestimenti moderni per un'atmosfera accogliente e raffinata.",
     coverImage:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80",
+      "/portfolio/privati/Dana del Piaz Privato 3/IMG_2596.webp",
     tall: true,
+    coverPosition: "object-[25%_center]",
     images: [
       {
-        src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80",
-        alt: "Villa moderna, soggiorno con pavimento in gres",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2596.webp",
+        alt: "Residenza A+V Saluzzo - Dettaglio ingresso",
         tall: true,
       },
       {
-        src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=900&q=80",
-        alt: "Dettaglio bagno in marmo travertino",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2581.webp",
+        alt: "Residenza A+V Saluzzo - Vista 2",
         tall: false,
       },
       {
-        src: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900&q=80",
-        alt: "Cucina aperta con pavimento continuo",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2582.webp",
+        alt: "Residenza A+V Saluzzo - Vista 3",
         tall: false,
       },
       {
-        src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=900&q=80",
-        alt: "Corridoio con parquet rovere naturale",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2583.webp",
+        alt: "Residenza A+V Saluzzo - Vista 4",
         tall: true,
       },
       {
-        src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80",
-        alt: "Sala da bagno principale con doccia walk-in",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2586.webp",
+        alt: "Residenza A+V Saluzzo - Vista 5",
         tall: false,
       },
       {
-        src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&q=80",
-        alt: "Camera da letto con pavimento in parquet",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2587.webp",
+        alt: "Residenza A+V Saluzzo - Vista 6",
         tall: false,
       },
       {
-        src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=80",
-        alt: "Dettaglio rivestimento scale interne",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2588.webp",
+        alt: "Residenza A+V Saluzzo - Vista 7",
         tall: true,
       },
       {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80",
-        alt: "Terrazza esterna con pavimento in gres outdoor",
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2589.webp",
+        alt: "Residenza A+V Saluzzo - Vista 8",
         tall: false,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2591.webp",
+        alt: "Residenza A+V Saluzzo - Vista 9",
+        tall: false,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2593.webp",
+        alt: "Residenza A+V Saluzzo - Vista 10",
+        tall: true,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2594.webp",
+        alt: "Residenza A+V Saluzzo - Vista 11",
+        tall: false,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2595.webp",
+        alt: "Residenza A+V Saluzzo - Vista 12",
+        tall: false,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2597.webp",
+        alt: "Residenza A+V Saluzzo - Vista 13",
+        tall: true,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2598.webp",
+        alt: "Residenza A+V Saluzzo - Vista 14",
+        tall: false,
+      },
+      {
+        src: "/portfolio/privati/Dana del Piaz Privato 3/IMG_2599.webp",
+        alt: "Residenza A+V Saluzzo - Vista 15",
+        tall: true,
       },
     ],
   },
   {
-    slug: "bagno-esclusivo-cuneo",
-    title: "Bagno Esclusivo",
-    location: "Cuneo",
+    slug: "casa-a-g-savigliano",
+    title: "Casa A+G",
+    location: "Savigliano",
     category: "privati",
-    year: "2024",
     description:
-      "Un bagno di design trasformato in un ambiente spa con rivestimenti in grande formato, rubinetteria di design e illuminazione integrata. Un'oasi di relax nel cuore della casa.",
+      "Una residenza privata dove il design contemporaneo si fonde con materiali di pregio. Pavimenti eleganti e rivestimenti moderni che valorizzano ogni ambiente della casa.",
     coverImage:
-      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=900&q=80",
+      "/portfolio/privati/Casa A+G Savigliano/IMG_06.webp",
     tall: false,
     images: [
-      {
-        src: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=900&q=80",
-        alt: "Vasca freestanding in bagno di design",
-        tall: true,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80",
-        alt: "Doccia walk-in con piastrelle in grande formato",
-        tall: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80",
-        alt: "Mobile bagno con top in marmo Calacatta",
-        tall: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900&q=80",
-        alt: "Dettaglio rubinetteria e sanitari di design",
-        tall: true,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&q=80",
-        alt: "Vista d'insieme del bagno completato",
-        tall: false,
-      },
-      {
-        src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=80",
-        alt: "Nicchie a muro con illuminazione LED",
-        tall: false,
-      },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_01.webp", alt: "Casa A+G Savigliano - Vista 1", tall: true },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_02.webp", alt: "Casa A+G Savigliano - Vista 2", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_03.webp", alt: "Casa A+G Savigliano - Vista 3", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_04.webp", alt: "Casa A+G Savigliano - Vista 4", tall: true },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_05.webp", alt: "Casa A+G Savigliano - Vista 5", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_06.webp", alt: "Casa A+G Savigliano - Vista 6", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_07.webp", alt: "Casa A+G Savigliano - Vista 7", tall: true },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_08.webp", alt: "Casa A+G Savigliano - Vista 8", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_09.webp", alt: "Casa A+G Savigliano - Vista 9", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_10.webp", alt: "Casa A+G Savigliano - Vista 10", tall: true },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_11.webp", alt: "Casa A+G Savigliano - Vista 11", tall: false },
+      { src: "/portfolio/privati/Casa A+G Savigliano/IMG_12.webp", alt: "Casa A+G Savigliano - Vista 12", tall: true },
     ],
   },
   {
@@ -118,7 +135,6 @@ export const projects: Project[] = [
     title: "Showroom Commerciale",
     location: "Torino",
     category: "imprese",
-    year: "2023",
     description:
       "Un ampio showroom di ceramiche arredato con pavimenti e rivestimenti di nostra selezione. Un progetto commerciale che valorizza il prodotto attraverso l'ambiente stesso.",
     coverImage:
@@ -167,7 +183,6 @@ export const projects: Project[] = [
     title: "Residenza Privata",
     location: "Fossano",
     category: "privati",
-    year: "2023",
     description:
       "Una residenza elegante completata con parquet in rovere naturale spazzolato in tutta la zona giorno e rivestimenti in pietra per i bagni. Un progetto pensato per durare nel tempo.",
     coverImage:
@@ -222,7 +237,6 @@ export const projects: Project[] = [
     title: "Appartamento Centro Storico",
     location: "Alba",
     category: "privati",
-    year: "2024",
     description:
       "Ristrutturazione completa di un appartamento storico nel cuore di Alba. Pavimentazione in gres effetto cotto antico per rispettare l'architettura originale, abbinata a rivestimenti bagno contemporanei in marmo nero Marquina.",
     coverImage:
@@ -248,7 +262,6 @@ export const projects: Project[] = [
     title: "Hotel Palazzo Reale",
     location: "Torino",
     category: "imprese",
-    year: "2023",
     description:
       "Fornitura e posa di pavimenti e rivestimenti per un hotel boutique nel centro di Torino. Marmi pregiati nell'atrio, parquet a spina di pesce nelle camere, gres porcellanato tecnico negli spazi comuni.",
     coverImage:
@@ -275,7 +288,6 @@ export const projects: Project[] = [
     title: "Residenza sulla Collina",
     location: "Bra",
     category: "privati",
-    year: "2023",
     description:
       "Villa unifamiliare immersa nelle Langhe, progettata per integrarsi perfettamente con il paesaggio. Pavimenti in pietra di Luserna naturale all'esterno, gres effetto legno di rovere negli interni per un ambiente caldo e contemporaneo.",
     coverImage:
@@ -302,7 +314,6 @@ export const projects: Project[] = [
     title: "Ristorante Il Cortile",
     location: "Cuneo",
     category: "imprese",
-    year: "2024",
     description:
       "Un ristorante gourmet nel cuore di Cuneo dove il pavimento diventa parte dell'esperienza gastronomica. Rivestimenti in cotto fatto a mano, tavoli con piani in marmo e un cortile interno con sampietrini originali restaurati.",
     coverImage:
@@ -328,7 +339,6 @@ export const projects: Project[] = [
     title: "Loft Industriale",
     location: "Mondovì",
     category: "privati",
-    year: "2022",
     description:
       "Recupero di un ex capannone industriale trasformato in loft abitativo di design. Pavimento in cemento levigato e lucidato per mantenere l'anima industrial, abbinato a rivestimenti bagno in gres effetto cemento graffiato.",
     coverImage:
@@ -354,7 +364,6 @@ export const projects: Project[] = [
     title: "Studio Medico Poliambulatorio",
     location: "Savigliano",
     category: "imprese",
-    year: "2024",
     description:
       "Progettazione e posa di pavimenti e rivestimenti per un poliambulatorio medico. Materiali ad altissima igienicità, gres porcellanato antibatterico nei corridoi, rivestimenti vinilici nelle sale visita, pavimento in resina nell'area sterilizzazione.",
     coverImage:
@@ -379,7 +388,6 @@ export const projects: Project[] = [
     title: "Penthouse Vista Alpi",
     location: "Torino",
     category: "privati",
-    year: "2024",
     description:
       "Un attico con terrazza panoramica a 360° sulle Alpi e sulla skyline di Torino. Pavimenti in marmo Statuario in grande formato 120x240, rivestimenti bagno in onice retroilluminato, terrazza con gres outdoor effetto pietra di Luserna.",
     coverImage:
@@ -406,7 +414,6 @@ export const projects: Project[] = [
     title: "Boutique Moda",
     location: "Cuneo",
     category: "imprese",
-    year: "2023",
     description:
       "Allestimento completo di una boutique di abbigliamento nel centro di Cuneo. Pavimento in resina bianca lucida per massimizzare la luce, rivestimenti a parete in microcemento antracite, camerini con parquet in rovere naturale.",
     coverImage:
