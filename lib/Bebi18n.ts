@@ -3,7 +3,7 @@ export type Language = "it" | "en";
 export interface Dictionary {
   nav: {
     home: string;
-    about: string;
+    services: string;
     products: string;
     projects: string;
     contact: string;
@@ -38,21 +38,18 @@ export interface Dictionary {
     ctaSub: string;
     ctaButton: string;
   };
-  about: {
+  services: {
     title: string;
     heroHeadline: string;
-    storyTitle: string;
-    storyP1: string;
-    storyP2: string;
-    valuesTitle: string;
-    value1Title: string;
-    value1Desc: string;
-    value2Title: string;
-    value2Desc: string;
-    value3Title: string;
-    value3Desc: string;
-    teamTitle: string;
-    teamSub: string;
+    heroSub: string;
+    service1Title: string;
+    service1Desc: string;
+    service2Title: string;
+    service2Desc: string;
+    service3Title: string;
+    service3Desc: string;
+    contractTitle: string;
+    contractDesc: string;
   };
   products: {
     title: string;
@@ -107,7 +104,7 @@ export interface Dictionary {
 const it: Dictionary = {
   nav: {
     home: "Home",
-    about: "Chi Siamo",
+    services: "Servizi",
     products: "Prodotti",
     projects: "Progetti",
     contact: "Contatti",
@@ -166,26 +163,18 @@ const it: Dictionary = {
       "Tocca con mano i materiali e lasciati ispirare dai nostri ambienti.",
     ctaButton: "Come raggiungerci",
   },
-  about: {
-    title: "Chi Siamo — B&B Pavimenti",
-    heroHeadline: "Una storia di famiglia,\nuna passione per il bello",
-    storyTitle: "La nostra storia",
-    storyP1:
-      "Fondata nel 1969 a Savigliano, B&B Pavimenti e Rivestimenti nasce come piccola attività familiare con una grande visione: rendere ogni spazio unico attraverso superfici di qualità. Tre generazioni di esperienza ci hanno insegnato che ogni progetto merita attenzione, cura e materiali d'eccellenza.",
-    storyP2:
-      "Oggi il nostro showroom di Via Togliatti 50 è un punto di riferimento per architetti, designer e privati che cercano ispirazione e qualità. Collaboriamo con i migliori produttori italiani e internazionali per offrire una selezione curata di pavimenti, rivestimenti, soluzioni bagno e parquet.",
-    valuesTitle: "I nostri valori",
-    value1Title: "Qualità",
-    value1Desc:
-      "Selezioniamo solo materiali che soddisfano i più alti standard di durabilità, estetica e sostenibilità.",
-    value2Title: "Artigianalità",
-    value2Desc:
-      "Ogni progetto è unico. Lavoriamo con cura artigianale, dalla consulenza alla posa in opera.",
-    value3Title: "Innovazione",
-    value3Desc:
-      "Restiamo al passo con le ultime tendenze e tecnologie per offrire soluzioni contemporanee.",
-    teamTitle: "Il nostro team",
-    teamSub: "Le persone che rendono tutto possibile",
+  services: {
+    title: "Servizi — B&B Pavimenti",
+    heroHeadline: "Realizziamo superfici\nche definiscono gli spazi",
+    heroSub: "Dalla consulenza iniziale alla posa magistrale. Affianchiamo privati, architetti e imprese in ogni fase del progetto, garantendo risultati d'eccellenza.",
+    service1Title: "Consulenza & Progettazione",
+    service1Desc: "Il nostro team di esperti ti guida nella scelta dei materiali più adatti alle tue esigenze estetiche e funzionali. Studiamo gli spazi per proporre soluzioni su misura che valorizzino ogni ambiente.",
+    service2Title: "Fornitura Materiali Esclusivi",
+    service2Desc: "Selezioniamo le migliori essenze di parquet, ceramiche pregiate, pietre naturali e resine dai più importanti brand italiani e internazionali, per garantirti qualità e durabilità nel tempo.",
+    service3Title: "Posa in Opera Magistrale",
+    service3Desc: "I nostri posatori specializzati eseguono lavori a regola d'arte con precisione sartoriale. Dalla preparazione del fondo alle finiture, curiamo ogni dettaglio per un risultato perfetto.",
+    contractTitle: "Servizi per Imprese e Contract",
+    contractDesc: "B&B Pavimenti è il partner ideale per grandi forniture, hotel, complessi residenziali e spazi commerciali. Offriamo soluzioni chiavi in mano, rispettando budget e tempistiche cantiere con un servizio logistico e di assistenza dedicato.",
   },
   products: {
     title: "Prodotti — B&B Pavimenti",
@@ -258,7 +247,7 @@ const it: Dictionary = {
 const en: Dictionary = {
   nav: {
     home: "Home",
-    about: "About",
+    services: "Services",
     products: "Products",
     projects: "Projects",
     contact: "Contact",
@@ -316,26 +305,18 @@ const en: Dictionary = {
     ctaSub: "Touch the materials and let our spaces inspire you.",
     ctaButton: "Get directions",
   },
-  about: {
-    title: "About Us — B&B Pavimenti",
-    heroHeadline: "A family story,\na passion for beauty",
-    storyTitle: "Our story",
-    storyP1:
-      "Founded in 1969 in Savigliano, B&B Pavimenti e Rivestimenti began as a small family business with a grand vision: making every space unique through quality surfaces. Three generations of experience taught us that every project deserves attention, care, and materials of excellence.",
-    storyP2:
-      "Today our showroom at Via Togliatti 50 is a reference point for architects, designers, and homeowners seeking inspiration and quality. We collaborate with the finest Italian and international manufacturers to offer a curated selection of flooring, wall coverings, bathroom solutions, and parquet.",
-    valuesTitle: "Our values",
-    value1Title: "Quality",
-    value1Desc:
-      "We select only materials that meet the highest standards of durability, aesthetics, and sustainability.",
-    value2Title: "Craftsmanship",
-    value2Desc:
-      "Every project is unique. We work with artisanal care, from consultation to installation.",
-    value3Title: "Innovation",
-    value3Desc:
-      "We stay current with the latest trends and technologies to offer contemporary solutions.",
-    teamTitle: "Our team",
-    teamSub: "The people who make it all possible",
+  services: {
+    title: "Services — B&B Pavimenti",
+    heroHeadline: "Creating surfaces\nthat define spaces",
+    heroSub: "From initial consultation to masterful installation. We support homeowners, architects, and businesses in every phase of the project, ensuring excellent results.",
+    service1Title: "Consulting & Design",
+    service1Desc: "Our team of experts guides you in choosing the materials best suited to your aesthetic and functional needs. We study the spaces to propose tailor-made solutions that enhance every environment.",
+    service2Title: "Premium Materials Supply",
+    service2Desc: "We select the best parquet essences, fine ceramics, natural stones, and resins from top Italian and international brands, to guarantee quality and durability over time.",
+    service3Title: "Masterful Installation",
+    service3Desc: "Our specialized installers perform state-of-the-art work with sartorial precision. From subfloor preparation to finishes, we take care of every detail for a perfect result.",
+    contractTitle: "Business & Contract Services",
+    contractDesc: "B&B Pavimenti is the ideal partner for large supplies, hotels, residential complexes, and commercial spaces. We offer turnkey solutions, respecting budgets and construction timelines with dedicated logistics and support.",
   },
   products: {
     title: "Products — B&B Pavimenti",

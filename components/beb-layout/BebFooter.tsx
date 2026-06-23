@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/BebLanguageContext";
 /* ── Nav links ──────────────────────────────────────────────── */
 const navLinks = [
   { href: "/", key: "home" as const },
-  { href: "/chi-siamo", key: "about" as const },
+  { href: "/servizi", key: "services" as const },
   { href: "/prodotti", key: "products" as const },
   { href: "/progetti", key: "projects" as const },
   { href: "/contatti", key: "contact" as const },
@@ -89,8 +89,22 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* ── DIVIDER ── */}
-        <div className="my-10 h-px w-full bg-white/10" />
+        {/* ── DIVIDER WITH SOCIAL ICONS ── */}
+        <div className="mt-10 flex items-center gap-5 pb-3">
+          <a href="https://www.instagram.com/beb_pavimenti/" target="_blank" rel="noopener noreferrer" className="text-white/35 hover:text-white transition-colors" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/bebpavimenti/?locale=it_IT" target="_blank" rel="noopener noreferrer" className="text-white/35 hover:text-white transition-colors" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+        <div className="mb-10 h-px w-full bg-white/10" />
 
         {/* ── MIDDLE: address + legal info ── */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
@@ -131,7 +145,7 @@ export default function Footer() {
               className="block font-serif leading-none tracking-tight text-white transition-opacity duration-300 hover:opacity-75"
               style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
             >
-              B&amp;B Pavimenti
+              B<span className="font-sans font-light">&amp;</span>B Pavimenti
             </Link>
           </motion.div>
 

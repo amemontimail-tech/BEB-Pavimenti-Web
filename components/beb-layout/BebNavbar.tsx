@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/BebLanguageContext";
 
 const navLinks = [
   { href: "/", key: "home" as const },
-  { href: "/chi-siamo", key: "about" as const },
+  { href: "/servizi", key: "services" as const },
   { href: "/prodotti", key: "products" as const },
   { href: "/progetti", key: "projects" as const },
   { href: "/contatti", key: "contact" as const },
