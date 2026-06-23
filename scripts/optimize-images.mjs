@@ -4,6 +4,9 @@ import sharp from 'sharp';
 
 const PORTFOLIO_DIR = path.join(process.cwd(), 'public', 'portfolio');
 
+// Only process these subdirectories
+const TARGET_DIRS = ['privati', 'imprese'];
+
 // Step 1: Flatten nested directories with the same name
 function flattenNestedDirectories(dir) {
     if (!fs.existsSync(dir)) return;
@@ -45,7 +48,7 @@ function flattenNestedDirectories(dir) {
     }
 }
 
-// Step 2: Optimize Images
+// Step 2: Optimize Images (quality 90 for better sharpness while keeping site fast)
 async function optimizeImages(dir) {
     if (!fs.existsSync(dir)) return;
     const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -57,6 +60,8 @@ async function optimizeImages(dir) {
             await optimizeImages(fullPath);
         } else if (entry.isFile()) {
             const ext = path.extname(entry.name).toLowerCase();
+
+            // Convert JPG/PNG → WebP at quality 90
             if (['.jpg', '.jpeg', '.png'].includes(ext)) {
                 const webpPath = fullPath.substring(0, fullPath.lastIndexOf('.')) + '.webp';
                 
@@ -72,7 +77,7 @@ async function optimizeImages(dir) {
                     }
 
                     await sharpInstance
-                        .webp({ quality: 95 })
+                        .webp({ quality: 90 })
                         .toFile(webpPath);
                     
                     // Delete original file
@@ -82,18 +87,59 @@ async function optimizeImages(dir) {
                     console.error(`Error processing ${fullPath}:`, err.message);
                 }
             }
+
+            // Re-encode existing WebP files at quality 90
+            if (ext === '.webp') {
+                try {
+                    console.log(`Re-encoding WebP: ${fullPath}`);
+
+                    // Read file into memory first (closes file handle before we write back)
+                    const inputBuffer = fs.readFileSync(fullPath);
+                    const image = sharp(inputBuffer);
+                    const metadata = await image.metadata();
+
+                    let sharpInstance = image;
+                    if (metadata.width && metadata.width > 1920) {
+                        sharpInstance = sharpInstance.resize(1920, null, { withoutEnlargement: true });
+                    }
+
+                    // Process to buffer and write directly to original path
+                    const outputBuffer = await sharpInstance
+                        .webp({ quality: 90 })
+                        .toBuffer();
+
+                    fs.writeFileSync(fullPath, outputBuffer);
+                    console.log(`Re-encoded: ${fullPath}`);
+                } catch (err) {
+                    console.error(`Error re-encoding ${fullPath}:`, err.message);
+                }
+            }
+
         }
     }
 }
 
 async function run() {
-    console.log('Starting directory flattening...');
-    flattenNestedDirectories(PORTFOLIO_DIR);
-    console.log('Directory flattening complete.');
+    for (const targetDir of TARGET_DIRS) {
+        const dirPath = path.join(PORTFOLIO_DIR, targetDir);
 
-    console.log('Starting image optimization...');
-    await optimizeImages(PORTFOLIO_DIR);
-    console.log('Image optimization complete.');
+        if (!fs.existsSync(dirPath)) {
+            console.log(`Directory not found, skipping: ${dirPath}`);
+            continue;
+        }
+
+        console.log(`\n--- Processing: ${targetDir} ---`);
+
+        console.log('Starting directory flattening...');
+        flattenNestedDirectories(dirPath);
+        console.log('Directory flattening complete.');
+
+        console.log('Starting image optimization...');
+        await optimizeImages(dirPath);
+        console.log(`Image optimization complete for: ${targetDir}`);
+    }
+
+    console.log('\nAll done!');
 }
 
 run().catch(console.error);

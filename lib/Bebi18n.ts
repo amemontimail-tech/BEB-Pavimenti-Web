@@ -136,7 +136,7 @@ const it: Dictionary = {
     cat3Title: "Parquet",
     cat3Desc: "Legni pregiati per pavimenti caldi ed eleganti.",
     catCta: "Esplora",
-    projectsTitle: "Progetti selezionati",
+    projectsTitle: "Alcuni dei nostri progetti documentati",
     projectsSub: "Alcuni dei nostri lavori più recenti",
     testimonialsTitle: "Cosa dicono i nostri clienti",
     testimonials: [
@@ -287,7 +287,7 @@ const en: Dictionary = {
     cat3Title: "Parquet",
     cat3Desc: "Fine woods for warm and elegant flooring.",
     catCta: "Explore",
-    projectsTitle: "Selected projects",
+    projectsTitle: "Some of our documented projects",
     projectsSub: "Some of our most recent work",
     testimonialsTitle: "What our clients say",
     testimonials: [
