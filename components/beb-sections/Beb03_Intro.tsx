@@ -51,6 +51,7 @@ export default function Intro() {
               className="object-cover object-center"
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={95}
             />
             {/* Subtle dark vignette on the right edge for depth */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/20" />

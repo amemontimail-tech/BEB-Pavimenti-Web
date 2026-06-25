@@ -58,6 +58,7 @@ export default function FeaturedProjects() {
                       project.coverPosition || "object-center"
                     }`}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    quality={95}
                   />
 
                   {/* Hover overlay — gradient + text */}

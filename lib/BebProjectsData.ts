@@ -1,4 +1,4 @@
-﻿export type ProjectCategory = "privati" | "imprese";
+export type ProjectCategory = "privati" | "imprese";
 
 export interface Project {
   slug: string;
@@ -16,6 +16,7 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+
   {
     slug: "residenza-av-saluzzo",
     title: "Residenza A+V",
@@ -210,38 +211,35 @@ export const projects: Project[] = [
   },
 
   {
-    slug: "residenza-ristrutturata-savigliano",
-    title: "Residenza Ristrutturata",
-    location: "Savigliano",
+    slug: "villa-m-c",
+    title: "Villa M+C",
+    location: "Piemonte",
     category: "privati",
-    description:
-      "Ristrutturazione completa di una residenza privata a Savigliano. Nuovi pavimenti e rivestimenti in ogni ambiente, dalla zona giorno ai bagni, per un risultato moderno ed elegante che valorizza ogni spazio.",
-    coverImage:
-      "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9604.webp",
+    description: "Progetto residenziale in cui l'attenzione per il dettaglio si unisce alla scelta di materiali pregiati, definendo spazi dal carattere moderno ed elegante.",
+    coverImage: "/portfolio/privati/Villa M+C/media__1782398929883.webp",
     tall: true,
-    coverPosition: "object-right",
     images: [
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9604.webp", alt: "Residenza Ristrutturata Savigliano - Copertina", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9563.webp", alt: "Residenza Ristrutturata Savigliano - Vista 1", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9565.webp", alt: "Residenza Ristrutturata Savigliano - Vista 2", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9569.webp", alt: "Residenza Ristrutturata Savigliano - Vista 3", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9570.webp", alt: "Residenza Ristrutturata Savigliano - Vista 4", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9574.webp", alt: "Residenza Ristrutturata Savigliano - Vista 5", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9575.webp", alt: "Residenza Ristrutturata Savigliano - Vista 6", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9577.webp", alt: "Residenza Ristrutturata Savigliano - Vista 7", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9578.webp", alt: "Residenza Ristrutturata Savigliano - Vista 8", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9579.webp", alt: "Residenza Ristrutturata Savigliano - Vista 9", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9584.webp", alt: "Residenza Ristrutturata Savigliano - Vista 10", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9585.webp", alt: "Residenza Ristrutturata Savigliano - Vista 11", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9586.webp", alt: "Residenza Ristrutturata Savigliano - Vista 12", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9590.webp", alt: "Residenza Ristrutturata Savigliano - Vista 13", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9600.webp", alt: "Residenza Ristrutturata Savigliano - Vista 14", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9605.webp", alt: "Residenza Ristrutturata Savigliano - Vista 15", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9608.webp", alt: "Residenza Ristrutturata Savigliano - Vista 16", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9611.webp", alt: "Residenza Ristrutturata Savigliano - Vista 17", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9612.webp", alt: "Residenza Ristrutturata Savigliano - Vista 18", tall: false },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9617.webp", alt: "Residenza Ristrutturata Savigliano - Vista 19", tall: true },
-      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9619.webp", alt: "Residenza Ristrutturata Savigliano - Vista 20", tall: false },
+      { src: "/portfolio/privati/Villa M+C/nuova_foto_1.webp", alt: "Villa M+C - Vista 1", tall: false },
+      { src: "/portfolio/privati/Villa M+C/nuova_foto_2.webp", alt: "Villa M+C - Vista 2", tall: true },
+      { src: "/portfolio/privati/Villa M+C/nuova_foto_3.webp", alt: "Villa M+C - Vista 3", tall: false },
+      { src: "/portfolio/privati/Villa M+C/nuova_foto_4.webp", alt: "Villa M+C - Vista 4", tall: false },
+      { src: "/portfolio/privati/Villa M+C/nuova_foto_5.webp", alt: "Villa M+C - Vista 5", tall: true },
+      { src: "/portfolio/privati/Villa M+C/media__1782398772505.webp", alt: "Villa M+C - Vista 6", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398772571.webp", alt: "Villa M+C - Vista 7", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398772635.webp", alt: "Villa M+C - Vista 8", tall: true },
+      { src: "/portfolio/privati/Villa M+C/media__1782398772653.webp", alt: "Villa M+C - Vista 9", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398772719.webp", alt: "Villa M+C - Vista 10", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398869850.webp", alt: "Villa M+C - Vista 11", tall: true },
+      { src: "/portfolio/privati/Villa M+C/media__1782398869871.webp", alt: "Villa M+C - Vista 12", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398869915.webp", alt: "Villa M+C - Vista 13", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398869943.webp", alt: "Villa M+C - Vista 14", tall: true },
+      { src: "/portfolio/privati/Villa M+C/media__1782398869955.webp", alt: "Villa M+C - Vista 15", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398929727.webp", alt: "Villa M+C - Vista 16", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398929798.webp", alt: "Villa M+C - Vista 17", tall: true },
+      { src: "/portfolio/privati/Villa M+C/media__1782398929829.webp", alt: "Villa M+C - Vista 18", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398929883.webp", alt: "Villa M+C - Vista 19", tall: false },
+      { src: "/portfolio/privati/Villa M+C/media__1782398929898.webp", alt: "Villa M+C - Vista 20", tall: true },
+      { src: "/portfolio/privati/Villa M+C/media__1782398970865.webp", alt: "Villa M+C - Vista 21", tall: false },
     ],
   },
 
@@ -604,6 +602,41 @@ export const projects: Project[] = [
       { src: "/portfolio/imprese/Foto impresa 2 Santo stefano Belbo/IMG_5365.webp", alt: "Santo Stefano Belbo - Vista 25", tall: false },
       { src: "/portfolio/imprese/Foto impresa 2 Santo stefano Belbo/IMG_5366.webp", alt: "Santo Stefano Belbo - Vista 26", tall: true },
       { src: "/portfolio/imprese/Foto impresa 2 Santo stefano Belbo/IMG_5369.webp", alt: "Santo Stefano Belbo - Vista 27", tall: false },
+    ],
+  },
+  {
+    slug: "residenza-ristrutturata-savigliano",
+    title: "Residenza Ristrutturata",
+    location: "Savigliano",
+    category: "privati",
+    description:
+      "Ristrutturazione completa di una residenza privata a Savigliano. Nuovi pavimenti e rivestimenti in ogni ambiente, dalla zona giorno ai bagni, per un risultato moderno ed elegante che valorizza ogni spazio.",
+    coverImage:
+      "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9604.webp",
+    tall: false,
+    coverPosition: "object-right",
+    images: [
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9604.webp", alt: "Residenza Ristrutturata Savigliano - Copertina", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9563.webp", alt: "Residenza Ristrutturata Savigliano - Vista 1", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9565.webp", alt: "Residenza Ristrutturata Savigliano - Vista 2", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9569.webp", alt: "Residenza Ristrutturata Savigliano - Vista 3", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9570.webp", alt: "Residenza Ristrutturata Savigliano - Vista 4", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9574.webp", alt: "Residenza Ristrutturata Savigliano - Vista 5", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9575.webp", alt: "Residenza Ristrutturata Savigliano - Vista 6", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9577.webp", alt: "Residenza Ristrutturata Savigliano - Vista 7", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9578.webp", alt: "Residenza Ristrutturata Savigliano - Vista 8", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9579.webp", alt: "Residenza Ristrutturata Savigliano - Vista 9", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9584.webp", alt: "Residenza Ristrutturata Savigliano - Vista 10", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9585.webp", alt: "Residenza Ristrutturata Savigliano - Vista 11", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9586.webp", alt: "Residenza Ristrutturata Savigliano - Vista 12", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9590.webp", alt: "Residenza Ristrutturata Savigliano - Vista 13", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9600.webp", alt: "Residenza Ristrutturata Savigliano - Vista 14", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9605.webp", alt: "Residenza Ristrutturata Savigliano - Vista 15", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9608.webp", alt: "Residenza Ristrutturata Savigliano - Vista 16", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9611.webp", alt: "Residenza Ristrutturata Savigliano - Vista 17", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9612.webp", alt: "Residenza Ristrutturata Savigliano - Vista 18", tall: false },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9617.webp", alt: "Residenza Ristrutturata Savigliano - Vista 19", tall: true },
+      { src: "/portfolio/privati/Ristrutturazione Savigliano Privato 2/IMG_9619.webp", alt: "Residenza Ristrutturata Savigliano - Vista 20", tall: false },
     ],
   },
 ];
