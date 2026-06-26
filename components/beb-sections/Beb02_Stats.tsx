@@ -91,7 +91,10 @@ export default function Stats() {
               delay={i * 0.15}
               className="text-center"
             >
-              <div className="font-serif text-5xl tracking-tight text-foreground lg:text-6xl">
+              <div
+                className="font-serif tracking-tight text-foreground"
+                style={{ fontSize: "clamp(1.6rem, 2.5vw, 3.75rem)" }}
+              >
                 <AnimatedNumber value={stat.value} />
               </div>
               <div className="mt-3 text-xs tracking-widest uppercase text-muted">
