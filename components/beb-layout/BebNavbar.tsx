@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/BebLanguageContext";
@@ -81,6 +82,7 @@ export default function Navbar() {
 
   // ── When pathname changes, reset state and re-check for #hero ──────────────
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHeroPassed(false);
     setLogoVisible(true);
   }, [pathname]);
@@ -111,7 +113,6 @@ export default function Navbar() {
       );
 
       observer.observe(hero);
-      // eslint-disable-next-line consistent-return
       return () => observer.disconnect();
     }, 50);
 
@@ -148,6 +149,7 @@ export default function Navbar() {
   }, [heroPassed]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
   }, [pathname]);
 
@@ -191,10 +193,13 @@ export default function Navbar() {
             style={{ pointerEvents: logoVisible ? "auto" : "none" }}
           >
             <Link href="/" className="flex items-center" id="navbar-logo">
-              <img
+              <Image
                 src="/logo BEB.webp"
                 alt="Logo BEB Pavimenti"
+                width={120}
+                height={120}
                 className="h-[120px] w-auto object-contain"
+                priority
               />
             </Link>
           </motion.div>

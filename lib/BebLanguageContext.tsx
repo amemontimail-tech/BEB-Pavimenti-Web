@@ -25,6 +25,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const stored = localStorage.getItem("beb-lang") as Language | null;
     if (stored === "it" || stored === "en") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLangState(stored);
     }
     setMounted(true);

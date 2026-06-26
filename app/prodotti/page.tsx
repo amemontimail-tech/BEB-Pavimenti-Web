@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import PageTransition from "@/components/beb-ui/BebPageTransition";
 import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
 import { useLanguage } from "@/lib/BebLanguageContext";

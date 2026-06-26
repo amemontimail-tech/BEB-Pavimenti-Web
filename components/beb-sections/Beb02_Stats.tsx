@@ -16,6 +16,7 @@ function AnimatedNumber({ value }: { value: string }) {
     // Extract numbers and non-numbers
     const numMatch = value.match(/\d+[.,\d]*/);
     if (!numMatch) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDisplayValue(value);
       return;
     }
