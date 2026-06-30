@@ -6,7 +6,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/BebLanguageContext";
 
 const categoryImages = [
-  // Pavimenti & Rivestimenti
+  // Pavimenti e Rivestimenti
   "/prodotti/home-pavimenti.jpg",
   // Ambiente Bagno
   "/prodotti/modern-bathroom.png",

@@ -125,7 +125,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Codice Fiscale e Partita Iva: IT02535600049 • Registro imprese di Cuneo 02535600049 • CCIAA Cuneo 187426 R.E.A. • Cap. Soc. € 98.800.= i.v. Società capogruppo del Consorzio B&amp;B • Società consortile Cooperativa Attestato S.O.A.
+            Codice Fiscale e Partita Iva: IT02535600049 • Registro imprese di Cuneo 02535600049 • CCIAA Cuneo 187426 R.E.A. • Cap. Soc. € 98.800.= i.v. Società capogruppo del Consorzio B&B • Società consortile Cooperativa Attestato S.O.A.
           </motion.p>
         </div>
 
@@ -158,7 +158,7 @@ export default function Footer() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <p className="text-[11px] leading-relaxed text-white/35">
-              © {new Date().getFullYear()} B&amp;B Pavimenti e Rivestimenti.
+              © {new Date().getFullYear()} B&B Pavimenti e Rivestimenti.
               <br />
               Tutti i diritti riservati.
             </p>

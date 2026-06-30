@@ -7,6 +7,7 @@ export interface Dictionary {
     products: string;
     projects: string;
     contact: string;
+    promo: string;
   };
   home: {
     heroHeadline: string;
@@ -99,6 +100,14 @@ export interface Dictionary {
     contactTitle: string;
     copyright: string;
   };
+  promo: {
+    title: string;
+    heroHeadline: string;
+    heroSub: string;
+    ctaHeadline: string;
+    ctaSub: string;
+    ctaButton: string;
+  };
 }
 
 const it: Dictionary = {
@@ -108,6 +117,7 @@ const it: Dictionary = {
     products: "Prodotti",
     projects: "Progetti",
     contact: "Contatti",
+    promo: "Promo",
   },
   home: {
     heroHeadline: "Superfici che\nraccontano storie",
@@ -125,8 +135,8 @@ const it: Dictionary = {
     stat5Label: "Metri quadri di magazzino",
     stat5Value: "+1000",
     introText:
-      "B&B Pavimenti e Rivestimenti è il punto di riferimento a Savigliano per pavimenti, rivestimenti e soluzioni bagno. Da oltre mezzo secolo, accompagniamo ogni progetto con competenza, cura e passione per il bello.",
-    cat1Title: "Pavimenti & Rivestimenti",
+      "B&B Pavimenti e Rivestimenti è il punto di riferimento del nord italia per pavimenti, rivestimenti e soluzioni bagno. Da oltre mezzo secolo, accompagniamo ogni progetto con competenza, cura e passione per la bellezza.",
+    cat1Title: "Pavimenti e Rivestimenti",
     cat1Desc: "Ceramiche, gres porcellanato e pietre naturali per ogni ambiente.",
     cat2Title: "Ambiente Bagno",
     cat2Desc: "Soluzioni complete per il bagno, dal design al dettaglio.",
@@ -167,11 +177,11 @@ const it: Dictionary = {
     title: "Servizi — B&B Pavimenti",
     heroHeadline: "Realizziamo superfici\nche definiscono gli spazi",
     heroSub: "Dalla consulenza iniziale alla posa magistrale. Affianchiamo privati, architetti e imprese in ogni fase del progetto, garantendo risultati d'eccellenza.",
-    service1Title: "Consulenza & Progettazione",
+    service1Title: "Consulenza e Progettazione",
     service1Desc: "Il nostro team di esperti ti guida nella scelta dei materiali più adatti alle tue esigenze estetiche e funzionali. Studiamo gli spazi per proporre soluzioni su misura che valorizzino ogni ambiente.",
     service2Title: "Fornitura Materiali Esclusivi",
     service2Desc: "Selezioniamo le migliori essenze di parquet, ceramiche pregiate, pietre naturali e resine dai più importanti brand italiani e internazionali, per garantirti qualità e durabilità nel tempo.",
-    service3Title: "Posa in Opera Magistrale",
+    service3Title: "Posa in Opera",
     service3Desc: "I nostri posatori specializzati eseguono lavori a regola d'arte con precisione sartoriale. Dalla preparazione del fondo alle finiture, curiamo ogni dettaglio per un risultato perfetto.",
     contractTitle: "Servizi per Imprese e Contract",
     contractDesc: "B&B Pavimenti è il partner ideale per grandi forniture, hotel, complessi residenziali e spazi commerciali. Offriamo soluzioni chiavi in mano, rispettando budget e tempistiche cantiere con un servizio logistico e di assistenza dedicato.",
@@ -180,7 +190,7 @@ const it: Dictionary = {
     title: "Prodotti — B&B Pavimenti",
     heroHeadline: "I Nostri Prodotti",
     heroSub: "Scopri una collezione esclusiva dove il design incontra l'eccellenza. Una selezione curata dei materiali più pregiati, pensata per trasformare la tua visione in realtà e donare ad ogni ambiente un'allure di lusso senza tempo.",
-    cat1Title: "Pavimenti & Rivestimenti",
+    cat1Title: "Pavimenti e Rivestimenti",
     cat1Desc:
       "Ceramiche, gres porcellanato, pietre naturali e materiali innovativi. Per pavimenti e pareti che definiscono il carattere di ogni ambiente.",
     cat2Title: "Ambiente Bagno",
@@ -242,6 +252,14 @@ const it: Dictionary = {
     contactTitle: "Contatti",
     copyright: "© 2024 B&B Pavimenti e Rivestimenti. Tutti i diritti riservati.",
   },
+  promo: {
+    title: "Promo — B&B Pavimenti",
+    heroHeadline: "Offerte Esclusive",
+    heroSub: "Una selezione di prodotti premium a prezzi eccezionali, disponibili per un periodo limitato. Qualità B&B Pavimenti, senza compromessi.",
+    ctaHeadline: "Ti interessa un prodotto?",
+    ctaSub: "Contattaci per maggiori informazioni o per prenotare la tua visita in showroom. Il nostro team è a tua disposizione.",
+    ctaButton: "Contattaci",
+  },
 };
 
 const en: Dictionary = {
@@ -251,6 +269,7 @@ const en: Dictionary = {
     products: "Products",
     projects: "Projects",
     contact: "Contact",
+    promo: "Promo",
   },
   home: {
     heroHeadline: "Surfaces that\ntell stories",
@@ -268,8 +287,8 @@ const en: Dictionary = {
     stat5Label: "Square meters of warehouse",
     stat5Value: "+1000",
     introText:
-      "B&B Pavimenti e Rivestimenti is Savigliano's reference point for flooring, wall coverings, and bathroom solutions. For over half a century, we've accompanied every project with expertise, care, and a passion for beauty.",
-    cat1Title: "Flooring & Wall Tiles",
+      "B&B Pavimenti e Rivestimenti is Northern Italy's reference point for flooring, wall coverings, and bathroom solutions. For over half a century, we've accompanied every project with expertise, care, and a passion for beauty.",
+    cat1Title: "Flooring and Wall Tiles",
     cat1Desc: "Ceramics, porcelain stoneware, and natural stones for every space.",
     cat2Title: "Bathroom Design",
     cat2Desc: "Complete bathroom solutions, from design to detail.",
@@ -309,20 +328,20 @@ const en: Dictionary = {
     title: "Services — B&B Pavimenti",
     heroHeadline: "Creating surfaces\nthat define spaces",
     heroSub: "From initial consultation to masterful installation. We support homeowners, architects, and businesses in every phase of the project, ensuring excellent results.",
-    service1Title: "Consulting & Design",
+    service1Title: "Consulting and Design",
     service1Desc: "Our team of experts guides you in choosing the materials best suited to your aesthetic and functional needs. We study the spaces to propose tailor-made solutions that enhance every environment.",
     service2Title: "Premium Materials Supply",
     service2Desc: "We select the best parquet essences, fine ceramics, natural stones, and resins from top Italian and international brands, to guarantee quality and durability over time.",
     service3Title: "Masterful Installation",
     service3Desc: "Our specialized installers perform state-of-the-art work with sartorial precision. From subfloor preparation to finishes, we take care of every detail for a perfect result.",
-    contractTitle: "Business & Contract Services",
+    contractTitle: "Business and Contract Services",
     contractDesc: "B&B Pavimenti is the ideal partner for large supplies, hotels, residential complexes, and commercial spaces. We offer turnkey solutions, respecting budgets and construction timelines with dedicated logistics and support.",
   },
   products: {
     title: "Products — B&B Pavimenti",
     heroHeadline: "Our Products",
     heroSub: "Discover an exclusive collection where design meets excellence. A curated selection of the finest materials, conceived to turn your vision into reality and bestow a timeless, luxurious allure upon every space.",
-    cat1Title: "Flooring & Wall Tiles",
+    cat1Title: "Flooring and Wall Tiles",
     cat1Desc:
       "Ceramics, porcelain stoneware, natural stones, and innovative materials. For floors and walls that define the character of every space.",
     cat2Title: "Bathroom Design",
@@ -335,19 +354,19 @@ const en: Dictionary = {
     cat4Desc:
       "Textures, patterns, and exclusive materials for walls that become the protagonists of interior design.",
     productCategories: [
-      { title: "Flooring & Wall Tiles", desc: "Highest quality ceramics and cutting-edge porcelain stoneware to transform every surface into a work of art. Materials designed to enhance your unique design.", imageId: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" },
-      { title: "Faucets", desc: "Sculptural forms, elegant lines, and the finest technology to offer an uncompromising water experience and a touch of timeless class.", imageId: "/prodotti/rubinetterie.jpg" },
-      { title: "Bathtubs", desc: "Authentic sculptures dedicated to your physical and mental well-being, designed to be the undisputed and luxurious centerpieces of your bathroom.", imageId: "/prodotti/vasche.jpg" },
-      { title: "Wallpaper", desc: "Textures, patterns, and exclusive materials for walls that become the protagonists of interior design.", imageId: "/prodotti/carta-da-parati.jpg" },
-      { title: "Sanitaryware", desc: "Ergonomic design and clean lines for sanitaryware that combines absolute comfort with modern aesthetics for your bathroom.", imageId: "/prodotti/sanitari.jpg" },
-      { title: "Parquet & Wood", desc: "Carefully selected fine woods for floors that transmit warmth, natural elegance, and a sensation of pure comfort beneath your feet.", imageId: "/prodotti/parquet-legno-nuovo.jpg" },
+      { title: "Flooring and Wall Tiles", desc: "Highest quality ceramics and cutting-edge porcelain stoneware to transform every surface into a work of art. Materials designed to enhance your unique design.", imageId: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" },
+      { title: "Faucets", desc: "Sculptural forms, elegant lines, and the finest technology to offer an uncompromising water experience and a touch of timeless class.", imageId: "/prodotti/rubinetterie.webp" },
+      { title: "Bathtubs", desc: "Authentic sculptures dedicated to your physical and mental well-being, designed to be the undisputed and luxurious centerpieces of your bathroom.", imageId: "/prodotti/vasche.webp" },
+      { title: "Wallpaper", desc: "Textures, patterns, and exclusive materials for walls that become the protagonists of interior design.", imageId: "/prodotti/carta-da-parati.webp" },
+      { title: "Sanitaryware", desc: "Ergonomic design and clean lines for sanitaryware that combines absolute comfort with modern aesthetics for your bathroom.", imageId: "/prodotti/sanitari.webp" },
+      { title: "Parquet and Wood", desc: "Carefully selected fine woods for floors that transmit warmth, natural elegance, and a sensation of pure comfort beneath your feet.", imageId: "/prodotti/parquet-legno.webp" },
       { title: "Linoleum", desc: "Versatile and ecological surfaces, engineered with modern technologies to adapt perfectly to any contemporary environment, ensuring both resilience and style.", imageId: "/prodotti/linoleum.png" },
       { title: "Outdoor Materials", desc: "Resistant, durable, and highly prestigious solutions for outdoors, exclusive terraces, and gardens, created for uncompromising outdoor living.", imageId: "/prodotti/materiali-da-esterno.jpg" },
       { title: "PVC", desc: "The perfect blend of absolute practicality and refined aesthetics in an innovative, durable material, ideal for dynamic interior design projects.", imageId: "/prodotti/pvc.jpg" },
-      { title: "Bathroom Accessories", desc: "True luxury lies in the details: exclusively designed accessories intended to complete and enrich your personal oasis of daily well-being.", imageId: "/prodotti/accessori-bagno.jpg" },
+      { title: "Bathroom Accessories", desc: "True luxury lies in the details: exclusively designed accessories intended to complete and enrich your personal oasis of daily well-being.", imageId: "/prodotti/accessori-bagno.webp" },
       { title: "Shower Enclosures", desc: "Purest crystals, substantial thicknesses, and minimal lines that merge to create the ultimate expression of relaxation and contemporary elegance.", imageId: "/prodotti/box-doccia.jpg" },
       { title: "Shower Trays", desc: "Thin surfaces, refined and elegant textures, designed to integrate perfectly flush with the floor, ensuring safety and breathtaking visual impact.", imageId: "/prodotti/piatti-doccia.jpg" },
-      { title: "Bathroom Furniture", desc: "Exclusive design, artisanal finishes, and fine materials to furnish the bathroom with sophisticated aesthetics and impeccable functionality.", imageId: "/prodotti/mobili-da-bagno.jpg" }
+      { title: "Bathroom Furniture", desc: "Exclusive design, artisanal finishes, and fine materials to furnish the bathroom with sophisticated aesthetics and impeccable functionality.", imageId: "/prodotti/mobili-da-bagno.webp" }
     ],
     cta: "Request information",
   },
@@ -384,6 +403,14 @@ const en: Dictionary = {
     contactTitle: "Contact",
     copyright:
       "© 2024 B&B Pavimenti e Rivestimenti. All rights reserved.",
+  },
+  promo: {
+    title: "Promo — B&B Pavimenti",
+    heroHeadline: "Exclusive Offers",
+    heroSub: "A selection of premium products at exceptional prices, available for a limited time. B&B Pavimenti quality, without compromise.",
+    ctaHeadline: "Interested in a product?",
+    ctaSub: "Contact us for more information or to book your showroom visit. Our team is at your disposal.",
+    ctaButton: "Contact us",
   },
 };
 

@@ -244,7 +244,7 @@ export default function ServiziPage() {
         </div>
       </section>
 
-      {/* Imprese & Contract (Dark Section) */}
+      {/* Imprese e Contract (Dark Section) */}
       <section className="bg-foreground text-background py-28 lg:py-40 overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
 
@@ -276,9 +276,9 @@ export default function ServiziPage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 {[
-                  { icon: "🏨", label: "Hotel & Resort" },
-                  { icon: "🏢", label: "Uffici & Direzionale" },
-                  { icon: "🛍️", label: "Retail & Showroom" },
+                  { icon: "🏨", label: "Hotel e Resort" },
+                  { icon: "🏢", label: "Uffici e Direzionale" },
+                  { icon: "🛍️", label: "Retail e Showroom" },
                   { icon: "🏗️", label: "Contract Edilizio" },
                   { icon: "🏠", label: "Residenziale di Lusso" },
                   { icon: "🍽️", label: "Ristorazione" },

@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/servizi", key: "services" as const },
   { href: "/prodotti", key: "products" as const },
   { href: "/progetti", key: "projects" as const },
+  { href: "/promo", key: "promo" as const },
   { href: "/contatti", key: "contact" as const },
 ];
 
@@ -245,28 +246,31 @@ export default function Navbar() {
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             style={{ pointerEvents: logoVisible ? "auto" : "none" }}
           >
-            <button
-              onClick={() => setLang(lang === "it" ? "en" : "it")}
-              className="flex items-center gap-1 text-xs tracking-widest uppercase transition-colors duration-300"
-              id="language-toggle"
-              aria-label="Toggle language"
-            >
-              <span
+            <div className="flex items-center gap-1 text-xs tracking-widest uppercase">
+              <button
+                onClick={() => setLang("it")}
                 className={`transition-colors duration-300 ${
-                  lang === "it" ? "text-foreground font-medium" : "text-muted"
+                  lang === "it" ? "text-foreground font-medium" : "text-muted hover:text-foreground"
                 }`}
+                id="language-toggle-it"
+                aria-label="Italiano"
+                aria-pressed={lang === "it"}
               >
                 IT
-              </span>
+              </button>
               <span className="text-muted">/</span>
-              <span
+              <button
+                onClick={() => setLang("en")}
                 className={`transition-colors duration-300 ${
-                  lang === "en" ? "text-foreground font-medium" : "text-muted"
+                  lang === "en" ? "text-foreground font-medium" : "text-muted hover:text-foreground"
                 }`}
+                id="language-toggle-en"
+                aria-label="English"
+                aria-pressed={lang === "en"}
               >
                 EN
-              </span>
-            </button>
+              </button>
+            </div>
           </motion.div>
 
           {/* ── MOBILE: hamburger ── */}
