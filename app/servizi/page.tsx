@@ -130,7 +130,7 @@ function ContractCarousel() {
 }
 
 export default function ServiziPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <PageTransition>
@@ -138,6 +138,9 @@ export default function ServiziPage() {
       <section className="pt-32 pb-20 lg:pt-44 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <AnimatedSection>
+            <p className="mb-5 font-sans text-xs font-semibold tracking-[0.25em] uppercase text-[#4E9A63]">
+              {lang === "it" ? "I Nostri Servizi" : "Our Services"}
+            </p>
             <h1 className="font-serif text-5xl leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl whitespace-pre-line">
               {t.services.heroHeadline}
             </h1>

@@ -277,6 +277,13 @@ const promoItems: PromoItem[] = [
       "Plico box mirror 83",
     ],
     image: null,
+    images: [
+      "/promo/loom-fiamma-1.jpg",
+      "/promo/loom-fiamma-2.jpg",
+      "/promo/loom-fiamma-3.jpg",
+      "/promo/loom-fiamma-4.jpg",
+      "/promo/loom-fiamma-5.jpg"
+    ],
     prezzoPrecedente: "€ 3.200,00 + IVA",
     prezzoPromo: "€ 2.400,00 + IVA",
     sconto: 25,

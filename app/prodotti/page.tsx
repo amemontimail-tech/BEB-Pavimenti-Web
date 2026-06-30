@@ -27,7 +27,7 @@ const getGridSpan = (index: number) => {
 };
 
 export default function ProdottiPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <PageTransition>
@@ -35,9 +35,17 @@ export default function ProdottiPage() {
       <section className="pt-32 pb-20 lg:pt-48 lg:pb-28 text-center">
         <div className="mx-auto max-w-5xl px-6 lg:px-12">
           <AnimatedSection>
-            <h1 className="font-serif font-bold text-6xl leading-tight tracking-tight text-foreground sm:text-7xl lg:text-8xl drop-shadow-sm mx-auto">
-              {t.products.heroHeadline}
-            </h1>
+            {/* inline-block centers the block, text-left aligns children to the same left edge */}
+            <div className="inline-block text-left">
+              <p className="mb-5 font-sans text-xs font-semibold tracking-[0.25em] uppercase text-[#4E9A63]">
+                {lang === "it" ? "Prodotti Selezionati" : "Selected Products"}
+              </p>
+              <h1 className="font-serif font-bold text-6xl leading-tight tracking-tight text-foreground sm:text-7xl lg:text-8xl drop-shadow-sm">
+                {t.products.heroHeadline}
+              </h1>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
             <p className="mt-8 mx-auto max-w-2xl text-lg leading-relaxed text-muted sm:text-xl font-light">
               {t.products.heroSub}
             </p>

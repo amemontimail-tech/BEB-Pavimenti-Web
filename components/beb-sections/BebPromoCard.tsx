@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import type { Language } from "@/lib/Bebi18n";
 
 // ── Types ───────────────────────────────────────────────────────────────────
@@ -12,6 +12,7 @@ export interface PromoItem {
   descrizione: string[];
   descrizioneEn: string[];
   image: string | null;
+  images?: string[];
   prezzoPrecedente: string;
   prezzoPromo: string;
   sconto: number;
@@ -127,6 +128,92 @@ function ImagePlaceholder({ alt }: { alt: string }) {
   );
 }
 
+// ── Image Carousel ─────────────────────────────────────────────────────────────
+function PromoImageCarousel({ images, nome }: { images: string[]; nome: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance every 2s
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [images.length, isPaused]);
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+  
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div 
+      className="relative w-full h-full overflow-hidden group"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Images container */}
+      <div 
+        className="flex w-full h-full transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((img, i) => (
+          <div key={i} className="min-w-full h-full relative flex-shrink-0">
+            <img
+              src={img}
+              alt={`${nome} - ${i + 1}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={handlePrev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 text-[#4E9A63] hover:bg-white transition-all opacity-0 group-hover:opacity-100 shadow-sm"
+            aria-label="Precedente"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 text-[#4E9A63] hover:bg-white transition-all opacity-0 group-hover:opacity-100 shadow-sm"
+            aria-label="Successiva"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 bg-black/20 px-3 py-2 rounded-full backdrop-blur-sm">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                className={`h-1.5 rounded-full transition-all ${currentIndex === idx ? 'bg-white w-3' : 'bg-white/50 w-1.5 hover:bg-white/80'}`}
+                aria-label={`Vai alla foto ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 // ── PromoCard ────────────────────────────────────────────────────────────────
 export default function PromoCard({ item, index, lang }: PromoCardProps) {
   const isReversed = index % 2 === 1;
@@ -145,14 +232,15 @@ export default function PromoCard({ item, index, lang }: PromoCardProps) {
       >
         {/* ── Image ── */}
         <motion.div
-          className="relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[3/4]"
+          className="relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[3/4] bg-surface"
           initial={{ opacity: 0, x: isReversed ? 40 : -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {item.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
+          {item.images && item.images.length > 0 ? (
+            <PromoImageCarousel images={item.images} nome={nome} />
+          ) : item.image ? (
             <img
               src={item.image}
               alt={nome}
