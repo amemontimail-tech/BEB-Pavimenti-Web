@@ -4,6 +4,13 @@ import PageTransition from "@/components/beb-ui/BebPageTransition";
 import AnimatedSection from "@/components/beb-ui/BebAnimatedSection";
 import { useLanguage } from "@/lib/BebLanguageContext";
 import PromoCard, { type PromoItem } from "@/components/beb-sections/BebPromoCard";
+import PromoComingSoon from "@/components/beb-sections/PromoComingSoon";
+
+// ── Feature flag ────────────────────────────────────────────────────────────
+// Impostare a `true` per mostrare la sezione Promo reale.
+// Con `false` viene montato PromoComingSoon al suo posto ("Lavori in corso").
+// La sezione reale resta intatta nel codice e pronta all'attivazione.
+const PROMO_READY = false;
 
 // ── Promo data ─────────────────────────────────────────────────────────────
 const promoItems: PromoItem[] = [
@@ -410,70 +417,78 @@ export default function PromoPage() {
 
   return (
     <PageTransition>
-      {/* ── Hero ── */}
-      <section className="pt-32 pb-20 lg:pt-44 lg:pb-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      {/* ── Overlay "Lavori in corso" (PROMO_READY = false) ── */}
+      {!PROMO_READY && <PromoComingSoon lang={lang} />}
+
+      {/* ── Sezione Promo reale — non montata finché PROMO_READY è false ── */}
+      {PROMO_READY && (
+        <>
+          {/* ── Hero ── */}
+          <section className="pt-32 pb-20 lg:pt-44 lg:pb-24">
+            <div className="mx-auto max-w-7xl px-6 lg:px-12">
+              <AnimatedSection>
+                {/* eyebrow */}
+                <p className="mb-5 font-sans text-xs font-semibold tracking-[0.25em] uppercase text-[#4E9A63]">
+                  {lang === "it" ? "Offerte a tempo limitato" : "Limited time offers"}
+                </p>
+                <h1 className="font-serif text-5xl leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+                  {t.promo.heroHeadline}
+                </h1>
+              </AnimatedSection>
+              <AnimatedSection delay={0.15}>
+                <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted lg:text-xl">
+                  {t.promo.heroSub}
+                </p>
+              </AnimatedSection>
+            </div>
+          </section>
+
+          {/* ── Divider ── */}
+          <div className="mx-auto max-w-7xl px-6 lg:px-12">
+            <div className="h-px bg-border" />
+          </div>
+
+          {/* ── Promo items ── */}
+          <section className="py-12 lg:py-16">
+            <div className="mx-auto max-w-7xl px-6 lg:px-12">
+              <div className="flex flex-col">
+                {promoItems.map((item, index) => (
+                  <PromoCard
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    lang={lang}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── Bottom CTA ── */}
           <AnimatedSection>
-            {/* eyebrow */}
-            <p className="mb-5 font-sans text-xs font-semibold tracking-[0.25em] uppercase text-[#4E9A63]">
-              {lang === "it" ? "Offerte a tempo limitato" : "Limited time offers"}
-            </p>
-            <h1 className="font-serif text-5xl leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              {t.promo.heroHeadline}
-            </h1>
+            <section className="py-24 lg:py-32 bg-surface border-t border-border">
+              <div className="mx-auto max-w-3xl px-6 text-center">
+                <p className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-[#4E9A63] mb-5">
+                  {lang === "it" ? "Vuoi saperne di più?" : "Want to know more?"}
+                </p>
+                <h2 className="font-serif text-4xl leading-tight tracking-tight text-foreground sm:text-5xl">
+                  {t.promo.ctaHeadline}
+                </h2>
+                <p className="mt-6 text-lg text-muted leading-relaxed">
+                  {t.promo.ctaSub}
+                </p>
+                <a
+                  href="/contatti"
+                  className="mt-10 inline-flex items-center gap-2 rounded-full border border-foreground px-8 py-3.5 text-sm font-medium tracking-widest uppercase text-foreground transition-all duration-300 hover:bg-foreground hover:text-white"
+                >
+                  {t.promo.ctaButton}
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </section>
           </AnimatedSection>
-          <AnimatedSection delay={0.15}>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted lg:text-xl">
-              {t.promo.heroSub}
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ── Divider ── */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="h-px bg-border" />
-      </div>
-
-      {/* ── Promo items ── */}
-      <section className="py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="flex flex-col">
-            {promoItems.map((item, index) => (
-              <PromoCard
-                key={item.id}
-                item={item}
-                index={index}
-                lang={lang}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Bottom CTA ── */}
-      <AnimatedSection>
-        <section className="py-24 lg:py-32 bg-surface border-t border-border">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <p className="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-[#4E9A63] mb-5">
-              {lang === "it" ? "Vuoi saperne di più?" : "Want to know more?"}
-            </p>
-            <h2 className="font-serif text-4xl leading-tight tracking-tight text-foreground sm:text-5xl">
-              {t.promo.ctaHeadline}
-            </h2>
-            <p className="mt-6 text-lg text-muted leading-relaxed">
-              {t.promo.ctaSub}
-            </p>
-            <a
-              href="/contatti"
-              className="mt-10 inline-flex items-center gap-2 rounded-full border border-foreground px-8 py-3.5 text-sm font-medium tracking-widest uppercase text-foreground transition-all duration-300 hover:bg-foreground hover:text-white"
-            >
-              {t.promo.ctaButton}
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </section>
-      </AnimatedSection>
+        </>
+      )}
     </PageTransition>
   );
 }
