@@ -135,7 +135,7 @@ const it: Dictionary = {
     stat5Label: "Metri quadri di magazzino",
     stat5Value: "+1000",
     introText:
-      "B&B Pavimenti e Rivestimenti è il punto di riferimento del nord italia per pavimenti, rivestimenti e soluzioni bagno. Da oltre mezzo secolo, accompagniamo ogni progetto con competenza, cura e passione per la bellezza.",
+      "B&B Pavimenti e Rivestimenti è uno dei punti di riferimento del Nord-Ovest per pavimenti, rivestimenti e soluzioni bagno. Da oltre mezzo secolo, accompagniamo ogni progetto con competenza, cura e passione per la bellezza.",
     cat1Title: "Pavimenti e Rivestimenti",
     cat1Desc: "Ceramiche, gres porcellanato e pietre naturali per ogni ambiente.",
     cat2Title: "Ambiente Bagno",
@@ -176,7 +176,7 @@ const it: Dictionary = {
   services: {
     title: "Servizi — B&B Pavimenti",
     heroHeadline: "Realizziamo superfici\nche definiscono gli spazi",
-    heroSub: "Dalla consulenza iniziale alla posa magistrale. Affianchiamo privati, architetti e imprese in ogni fase del progetto, garantendo risultati d'eccellenza.",
+    heroSub: "Dalla consulenza iniziale alla posa. Affianchiamo privati, architetti e imprese in ogni fase del progetto, garantendo risultati d'eccellenza.",
     service1Title: "Consulenza e Progettazione",
     service1Desc: "Il nostro team di esperti ti guida nella scelta dei materiali più adatti alle tue esigenze estetiche e funzionali. Studiamo gli spazi per proporre soluzioni su misura che valorizzino ogni ambiente.",
     service2Title: "Fornitura Materiali Esclusivi",

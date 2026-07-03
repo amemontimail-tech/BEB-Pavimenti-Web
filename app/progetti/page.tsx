@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +11,87 @@ import { projects } from "@/lib/BebProjectsData";
 
 type ProjectCategory = "all" | "privati" | "imprese";
 
+// ── Typewriter card ─────────────────────────────────────────────────────────
+const PHRASES = [
+  "Altri progetti\nin arrivo",
+  "Nuovi lavori\nin corso",
+  "Stay tuned",
+];
+
+function TypewriterCard() {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [phase, setPhase] = useState<"typing" | "pause" | "erasing">("typing");
+  const frameRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const current = PHRASES[phraseIndex];
+
+    if (phase === "typing") {
+      if (displayed.length < current.length) {
+        frameRef.current = setTimeout(() => {
+          setDisplayed(current.slice(0, displayed.length + 1));
+        }, 55);
+      } else {
+        frameRef.current = setTimeout(() => setPhase("pause"), 2200);
+      }
+    } else if (phase === "pause") {
+      frameRef.current = setTimeout(() => setPhase("erasing"), 0);
+    } else if (phase === "erasing") {
+      if (displayed.length > 0) {
+        frameRef.current = setTimeout(() => {
+          setDisplayed(current.slice(0, displayed.length - 1));
+        }, 28);
+      } else {
+        frameRef.current = setTimeout(() => {
+          setPhraseIndex((i) => (i + 1) % PHRASES.length);
+          setPhase("typing");
+        }, 400);
+      }
+    }
+
+    return () => { if (frameRef.current) clearTimeout(frameRef.current); };
+  }, [displayed, phase, phraseIndex]);
+
+  return (
+    <div className="mb-4 break-inside-avoid">
+      <div
+        className="relative flex flex-col items-center justify-center overflow-hidden border border-border/40"
+        style={{ minHeight: "320px" }}
+      >
+        {/* Subtle animated background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-surface via-background to-surface" />
+
+        {/* Decorative corner dots */}
+        <div className="absolute top-5 left-5 w-1 h-1 rounded-full bg-muted/30" />
+        <div className="absolute top-5 right-5 w-1 h-1 rounded-full bg-muted/30" />
+        <div className="absolute bottom-5 left-5 w-1 h-1 rounded-full bg-muted/30" />
+        <div className="absolute bottom-5 right-5 w-1 h-1 rounded-full bg-muted/30" />
+
+        {/* Thin top line accent */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-muted/30 to-transparent" />
+
+        {/* Text */}
+        <div className="relative z-10 px-8 text-center">
+          <p
+            className="font-serif text-2xl leading-snug tracking-tight text-foreground/80 whitespace-pre-line"
+            style={{ minHeight: "3.5em" }}
+          >
+            {displayed}
+            <span
+              className="inline-block w-px h-6 bg-foreground/50 ml-0.5 align-middle animate-blink"
+            />
+          </p>
+          <p className="mt-6 text-[9px] tracking-[0.3em] uppercase text-muted/50">
+            prossimamente
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Page ────────────────────────────────────────────────────────────────────
 export default function ProgettiPage() {
   const { t } = useLanguage();
   const [filter, setFilter] = useState<ProjectCategory>("all");
@@ -124,6 +205,9 @@ export default function ProgettiPage() {
                 </motion.div>
               ))}
             </AnimatePresence>
+
+            {/* Typewriter card — fills the last empty column slot */}
+            <TypewriterCard />
           </div>
         </div>
       </section>

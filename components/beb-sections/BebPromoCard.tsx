@@ -59,7 +59,7 @@ function AnimatedPrice({
           <motion.path
             d={line1}
             stroke="#4E9A63"
-            strokeWidth="5"
+            strokeWidth="2"
             strokeLinecap="round"
             fill="none"
             initial={{ pathLength: 0 }}
@@ -70,7 +70,7 @@ function AnimatedPrice({
           <motion.path
             d={line2}
             stroke="#4E9A63"
-            strokeWidth="5"
+            strokeWidth="2"
             strokeLinecap="round"
             fill="none"
             initial={{ pathLength: 0 }}
@@ -146,20 +146,20 @@ function PromoImageCarousel({ images, nome }: { images: string[]; nome: string }
     e.stopPropagation();
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
-  
+
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   return (
-    <div 
+    <div
       className="relative w-full h-full overflow-hidden group"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Images container */}
-      <div 
+      <div
         className="flex w-full h-full transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
@@ -226,9 +226,8 @@ export default function PromoCard({ item, index, lang }: PromoCardProps) {
       aria-label={nome}
     >
       <div
-        className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-          isReversed ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""
-        }`}
+        className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${isReversed ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""
+          }`}
       >
         {/* ── Image ── */}
         <motion.div
