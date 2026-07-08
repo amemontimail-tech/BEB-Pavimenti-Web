@@ -4,6 +4,7 @@ import { Playfair_Display } from "next/font/google";
 import { LanguageProvider } from "@/lib/BebLanguageContext";
 import Navbar from "@/components/beb-layout/BebNavbar";
 import Footer from "@/components/beb-layout/BebFooter";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -59,6 +60,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
