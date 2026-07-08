@@ -41,6 +41,18 @@ export const metadata: Metadata = {
       "Pavimenti, rivestimenti e soluzioni bagno di qualità a Savigliano dal 1969.",
     type: "website",
     locale: "it_IT",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "B&B Pavimenti e Rivestimenti — Dal 1969",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
   },
 };
 
