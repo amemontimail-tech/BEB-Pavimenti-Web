@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/lib/BebLanguageContext";
 import Navbar from "@/components/beb-layout/BebNavbar";
 import Footer from "@/components/beb-layout/BebFooter";
@@ -59,6 +60,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </LanguageProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
