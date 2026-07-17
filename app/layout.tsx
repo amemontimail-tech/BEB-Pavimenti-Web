@@ -112,6 +112,20 @@ export default function RootLayout({
       className={`${geistSans.variable} ${playfair.variable} antialiased`}
     >
       <head>
+        {/* ── 1. Iubenda Cookie Solution ─────────────────────────────────────────
+             DEVE stare PRIMA di GTM: intercetta i tag e gestisce il consenso
+             GDPR prima che Google Tag Manager attivi qualsiasi tracker.
+        ── */}
+        <Script
+          id="iubenda-cs"
+          src="https://embeds.iubenda.com/widgets/8dd96715-db0c-4df3-aece-f90b31661ca9.js"
+          strategy="beforeInteractive"
+        />
+
+        {/* ── 2. Google Tag Manager ──────────────────────────────────────────────
+             Caricato DOPO la Cookie Solution di Iubenda, che può così
+             bloccare GTM finché l'utente non esprime il consenso.
+        ── */}
         <Script
           id="gtm-script"
           strategy="beforeInteractive"
@@ -139,6 +153,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <Footer />
         </LanguageProvider>
         <Analytics />
+
+        {/* ── 3. Iubenda JS loader ──────────────────────────────────────────────
+             Necessario per il rendering dei link embed Privacy/Cookie Policy
+             nel footer (classi iubenda-embed). Caricato in modo lazy on-load.
+        ── */}
+        <Script
+          id="iubenda-loader"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `(function (w,d) {
+  var loader = function () {
+    var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];
+    s.src="https://cdn.iubenda.com/iubenda.js";
+    tag.parentNode.insertBefore(s,tag);
+  };
+  if(w.addEventListener){w.addEventListener("load", loader, false);}
+  else if(w.attachEvent){w.attachEvent("onload", loader);}
+  else{w.onload = loader;}
+})(window, document);`,
+          }}
+        />
       </body>
     </html>
   );

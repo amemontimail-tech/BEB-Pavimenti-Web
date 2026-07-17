@@ -162,6 +162,26 @@ export default function Footer() {
               <br />
               Tutti i diritti riservati.
             </p>
+            {/* Iubenda Privacy & Cookie Policy links */}
+            <p className="mt-2 flex flex-wrap justify-end gap-x-3 text-[10px] tracking-widest uppercase text-white/35">
+              <a
+                href="https://www.iubenda.com/privacy-policy/50625579"
+                className="iubenda-nostyle iubenda-noiframe iubenda-embed transition-colors duration-300 hover:text-white/70"
+                title="Privacy Policy"
+                id="footer-privacy-policy"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-white/20" aria-hidden="true">·</span>
+              <a
+                href="https://www.iubenda.com/privacy-policy/50625579/cookie-policy"
+                className="iubenda-nostyle iubenda-noiframe iubenda-embed transition-colors duration-300 hover:text-white/70"
+                title="Cookie Policy"
+                id="footer-cookie-policy"
+              >
+                Cookie Policy
+              </a>
+            </p>
             <p className="mt-2 text-[10px] tracking-widest uppercase text-white/25">
               Powered by{" "}
               <a
